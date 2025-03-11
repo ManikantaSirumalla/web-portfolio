@@ -1,0 +1,50 @@
+const About = ({ id }) => {
+  return (
+    <section id={id} className="py-20 px-6">
+      <div className="container mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">About Me</h2>
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="md:w-1/3">
+            <div className="p-6 rounded-3xl shadow-lg bg-white">
+              <div className="w-full aspect-square rounded-2xl overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                <img src= "src/assets/profile.jpg" alt="Profile" className="w-full h-full" /> 
+              </div>
+              <div className="mt-6 text-center">
+                <h3 className="text-xl font-bold mb-2">Manikanta Sirumalla</h3>
+                <p className="mb-4 text-gray-600">iOS Developer & Data Science Enthusiast</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="md:w-2/3">
+            <h3 className="text-2xl font-bold mb-4">Innovative iOS Developer transitioning to Data Science</h3>
+            <p className="mb-4 text-gray-600">
+              With around 2 years of experience developing iOS applications using Swift and SwiftUI, I've specialized in creating 
+              elegant, user-friendly interfaces and optimizing app performance. Currently pursuing a Master's in Data Science at 
+              the University of Maryland, Baltimore County (UMBC).
+            </p>
+            <p className="mb-6 text-gray-600">
+              I'm passionate about leveraging my programming expertise to solve complex problems through machine learning and 
+              data analytics. My background in iOS development gives me a unique perspective on creating data-driven applications 
+              with exceptional user experiences.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-gray-100">
+                <h4 className="font-medium mb-2">Education</h4>
+                <p className="text-gray-600">Masters in Data Science, UMBC</p>
+                <p className="text-gray-600">B.Tech in Computer Science</p>
+              </div>
+              <div className="p-4 rounded-xl bg-gray-100">
+                <h4 className="font-medium mb-2">Location</h4>
+                <p className="text-gray-600">Baltimore, MD</p>
+                <p className="text-gray-600">Available for remote work</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
