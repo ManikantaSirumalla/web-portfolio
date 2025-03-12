@@ -107,13 +107,13 @@ const Projects = ({ id }) => {
           <div className="lg:w-2/3">
             {projects.length > 0 && activeProject !== -1 && (
               <div className="rounded-3xl overflow-hidden shadow-lg bg-white relative">
-                <div className="h-64 bg-gradient-to-r from-blue-400 to-purple-700 flex items-center justify-center relative">
+                <div className="h-64 flex items-center justify-center relative">
                   {projects[activeProject].image && (
-                    <div className="w-48 h-96 border-0 border-transparent rounded-3xl overflow-hidden absolute top-0.5 transform -translate-x-1/2 -translate-y-1/2 z-30 animate-zoom-in">
+                    <div className="w-48 h-96 border-0 border-transparent rounded-3xl overflow-hidden absolute top-0.5 transform -translate-x-1/5 -translate-y-1/5 z-30 animate-zoom-in">
                       <img src={`src/assets/${projects[activeProject].image}`} alt={projects[activeProject].title} className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                   )}
-                  <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-60 text-9xl font-bold">
+                  <div className="absolute inset-0 flex items-center justify-center  text-9xl font-bold gradient-text">
                     {projects[activeProject].title}
                   </div>
                 </div>
