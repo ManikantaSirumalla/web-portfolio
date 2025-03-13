@@ -67,6 +67,32 @@
   }
 }
 
+@keyframes fly-in {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bird-fly-in {
+  0% {
+    transform: translateY(-100%) translateX(-50%) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-50%) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
 .animate-slide-in {
   animation: slide-in 0.5s ease-out forwards;
 }
@@ -81,6 +107,14 @@
 
 .animate-fade-in {
   animation: fade-in 2s ease-in-out;
+}
+
+.animate-fly-in {
+  animation: fly-in 1s ease-out forwards;
+}
+
+.animate-bird-fly-in {
+  animation: bird-fly-in 2s ease-out forwards;
 }
 
 .w-48.h-96 {
@@ -123,4 +157,22 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* Add the gradient colors */
+.bg-gradient-to-br {
+  background: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-pink-400 {
+  --tw-gradient-from:  #ff08e6d4;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(244, 114, 182, 0));
+}
+
+.to-purple-500 {
+  --tw-gradient-to:#100992a5;
+}
+
+.app-container {
+  background-color: gray;
 }

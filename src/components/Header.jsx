@@ -42,7 +42,7 @@ const Header = ({ activeSection, menuOpen, setMenuOpen }) => {
       <header className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'} bg-white text-gray-900 border-gray-200 border-b`}>
         <div className="container mx-auto px-6 py-3 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg flex items-center justify-center text-white font-bold">
+            <div className="w-8 h-8 bg-blue-400 rounded-lg flex items-center justify-center text-white font-bold">
               MS
             </div>
             <span className="font-semibold text-xl">Manikanta Sirumalla</span>

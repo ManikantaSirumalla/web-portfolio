@@ -1,7 +1,7 @@
 // Contact Section Component
 const Contact = ({ id }) => {
   return (
-    <section id={id} className="py-20 px-6">
+    <section id={id} className="py-20 px-6 bg-gray-100">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Get In Touch</h2>
         

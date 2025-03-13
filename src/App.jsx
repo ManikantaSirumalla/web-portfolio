@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="app-container">
       <Header activeSection={activeSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Hero id="home" />
       <About id="about" />
@@ -43,7 +43,7 @@ function App() {
       <Skills id="skills" />
       <Contact id="contact" />
       <Footer />
-    </>
+    </div>
   );
 }
 

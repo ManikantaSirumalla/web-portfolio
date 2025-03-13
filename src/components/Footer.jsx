@@ -1,12 +1,12 @@
 // Footer Component
 const Footer = () => {
   return (
-    <footer className="py-10 px-6 border-t bg-white border-gray-200">
+    <footer className="py-10 px-6 border-t bg-gray-100 border-gray-200">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg flex items-center justify-center text-white font-bold">
+              <div className="w-8 h-8 bg-blue-400 rounded-lg flex items-center justify-center text-white font-bold">
                 MS
               </div>
               <span className="font-semibold text-xl">Manikanta Sirumalla</span>
