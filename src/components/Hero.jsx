@@ -1,6 +1,7 @@
 // Hero Section Component
 
 import { useEffect } from 'react';
+import swiftLogo from '../assets/swift-logo.png';
 
 const Hero = ({ id }) => {
   useEffect(() => {
@@ -47,7 +48,7 @@ const Hero = ({ id }) => {
         <div className="md:w-2/5">
           <div className="relative">
             <div className="w-full h-96 bg-gradient-to-br from-pink-400 to-purple-500 rounded-3xl shadow-xl flex items-center justify-center">
-              <img id="swift-logo" src="src/assets/swift-logo.png" alt="Swift Logo" className="w-80 h-80" />
+              <img id="swift-logo" src={swiftLogo} alt="SwiftLogo" className="w-80 h-80" />
             </div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-2xl transform rotate-12"> </div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-pink-400 rounded-full"></div>

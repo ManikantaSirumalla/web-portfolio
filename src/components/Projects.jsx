@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import newswaveImage from '../assets/newswave.png';
+import whimAIImage from '../assets/whimAI.png';
+import phototalesImage from '../assets/phototales.png';
+import calculatorImage from '../assets/calculator.png';
 
 const Projects = ({ id }) => {
   const [activeProject, setActiveProject] = useState(0);
@@ -14,7 +18,7 @@ const Projects = ({ id }) => {
         "Custom tab bar with interactive animations"
       ],
       techStack: "SwiftUI, Combine, Codable, Kingfisher, Firebase, Firestore, Authentication",
-      image: "newswave.png"
+      image: newswaveImage
     },
     {
       title: "WhimAI",
@@ -28,7 +32,7 @@ const Projects = ({ id }) => {
         "Resizable widgets for enhanced accessibility"
       ],
       techStack: "Swift, SwiftUI, UIKit, Combine, AVFoundation, Firebase, MailGun, Alamofire",
-      image: "whimAI.png"
+      image: whimAIImage
     },
     {
       title: "PhotoTales",
@@ -41,7 +45,7 @@ const Projects = ({ id }) => {
         "User-Friendly Interface: Features an intuitive and clean interface, making navigation and interaction straightforward for users."
       ],
       techStack: "Swift, SwiftUI, Combine",
-      image: "phototales.png"
+      image: phototalesImage
     },
     {
       title: "Calculator",
@@ -53,7 +57,7 @@ const Projects = ({ id }) => {
         "Error Handling: Implements safeguards against common errors, such as division by zero, ensuring reliable operation."
       ],
       techStack: "Swift, SwiftUI, MVC",
-      image: "calculator.png"
+      image: calculatorImage
     },
     {
       title: "Graduate Admissions Predictor with ML (Academic project)",
@@ -110,7 +114,7 @@ const Projects = ({ id }) => {
                 <div className="h-64 flex items-center justify-center relative">
                   {projects[activeProject].image && (
                     <div className="w-48 h-96 border-0 border-transparent rounded-3xl overflow-hidden absolute top-0.5 transform -translate-x-1/5 -translate-y-1/5 z-30 animate-zoom-in">
-                      <img src={`src/assets/${projects[activeProject].image}`} alt={projects[activeProject].title} className="absolute inset-0 w-full h-full object-cover" />
+                      <img src={projects[activeProject].image} alt={projects[activeProject].title} className="absolute inset-0 w-full h-full object-cover" />
                     </div>
                   )}
                   <div className="absolute inset-0 flex items-center justify-center  text-9xl font-bold gradient-text">
