@@ -1,3 +1,7 @@
+import phoneIcon from '../assets/phone.png';
+import emailIcon from '../assets/email.png';
+import locationIcon from '../assets/location.png';
+
 // Contact Section Component
 const Contact = ({ id }) => {
   return (
@@ -13,7 +17,7 @@ const Contact = ({ id }) => {
               <div className="space-y-8">
                 <div className="flex items-start">
                   <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-blue-500 mr-4">
-                    <img src="src/assets/phone.png" alt="Phone Icon" className="w-8 h-8" />
+                    <img src={phoneIcon} alt="Phone Icon" className="w-8 h-8" />
                   </div>
                   <div className="text-left">
                     <h4 className="font-medium mb-1">Phone</h4>
@@ -23,7 +27,7 @@ const Contact = ({ id }) => {
                 
                 <div className="flex items-start">
                   <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-blue-500 mr-4">
-                    <img src="src/assets/email.png" alt="Email Icon" className="w-8 h-8" />
+                    <img src={emailIcon} alt="Email Icon" className="w-8 h-8" />
                   </div>
                   <div className="text-left">
                     <h4 className="font-medium mb-1">Email</h4>
@@ -33,7 +37,7 @@ const Contact = ({ id }) => {
                 
                 <div className="flex items-start">
                   <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-blue-500 mr-4">
-                    <img src="src/assets/location.png" alt="Location Icon" className="w-8 h-8" />
+                    <img src={locationIcon} alt="Location Icon" className="w-8 h-8" />
                   </div>
                   <div className="text-left">
                     <h4 className="font-medium mb-1">Location</h4>

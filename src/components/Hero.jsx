@@ -10,7 +10,7 @@ const Hero = ({ id }) => {
   }, []);
 
   return (
-    <section id={id} className="min-h-screen flex items-center justify-center p-6 bg-gray-100">
+    <section id={id} className="min-h-screen flex items-center justify-center p-6 bg-white">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-10 md:mb-0">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">

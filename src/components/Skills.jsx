@@ -132,6 +132,10 @@ const Skills = ({ id }) => {
                   <h5 className="font-medium mb-1">Python Programming Essentials</h5>
                   <p className="text-sm text-gray-600">ICAP</p>
                 </li>
+                <li className="p-4 rounded-xl bg-gray-50">
+                  <h5 className="font-medium mb-1">Database programming with PL/SQL</h5>
+                  <p className="text-sm text-gray-600">Oracle</p>
+                </li>
               </ul>
             </div>
           </div>

@@ -81,7 +81,7 @@ const Projects = ({ id }) => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Project Selector */}
           <div className="lg:w-1/3">
-            <div className="rounded-2xl p-6 bg-gray-100">
+            <div className="rounded-2xl p-6 bg-gray-200">
               <h3 className="text-xl font-bold mb-4">My Projects</h3>
               <div className="space-y-3">
                 {projects.map((project, index) => (
