@@ -15,7 +15,7 @@ const Experience = ({ id }) => {
                 <h3 className="text-2xl font-bold mb-2">iOS Developer</h3>
                 <img src={zetologo} alt="ZetoStudio Logo" className="mb-2 mx-auto h-16" />
                 <p className="text-blue-500 font-medium mb-2">ZetoStudio, Hyderabad</p>
-                <p className="text-gray-600 mb-4">Jun 2022 - Aug 2024</p>
+                <p className="text-gray-600 mb-4">Jun 2022 - Oct 2024</p>
               </div>
             </div>
             
@@ -68,7 +68,7 @@ const Experience = ({ id }) => {
                 <h3 className="text-2xl font-bold mb-5">iOS Developer Intern</h3>
                 <img src={griddynamicslogo} alt="Grid Dynamics Logo" className="mb-5 mx-auto w-20 h-16" />
                 <p className="text-blue-500 font-medium mb-2">Grid Dynamics, Remote</p>
-                <p className="text-gray-600 mb-4">Jan 2022 - May 2022</p>
+                <p className="text-gray-600 mb-4">Jan 2022 - Jun 2022</p>
               </div>
             </div>
             

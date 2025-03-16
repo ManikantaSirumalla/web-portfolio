@@ -50,7 +50,7 @@ const Contact = ({ id }) => {
                 <h4 className="font-medium mb-4 text-center">Connect with me</h4>
                 <div className="flex justify-center gap-6">
                   <a 
-                    href="https://linkedin.com" 
+                    href="https://www.linkedin.com/in/manikantasirumalla/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -59,7 +59,7 @@ const Contact = ({ id }) => {
                     </svg>
                   </a>
                   <a 
-                    href="https://github.com" 
+                    href="https://github.com/ManikantaSirumalla" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -68,7 +68,7 @@ const Contact = ({ id }) => {
                     </svg>
                   </a>
                   <a 
-                    href="https://medium.com" 
+                    href="https://medium.com/@manikantasirumalla5" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -79,7 +79,7 @@ const Contact = ({ id }) => {
                   </svg>
                   </a>
                   <a 
-                    href="https://leetcode.com" 
+                    href="https://leetcode.com/u/Manikanta_Sirumalla/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -88,7 +88,7 @@ const Contact = ({ id }) => {
                   </svg>
                   </a>
                   <a 
-                    href="https://twitter.com" 
+                    href="https://x.com/sirumalla87019" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
