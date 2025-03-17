@@ -1,4 +1,4 @@
-import profilepic from '../assets/profile.jpg';
+import profile from '../assets/profile.jpg';
 
 const About = ({ id }) => {
   return (
@@ -9,7 +9,7 @@ const About = ({ id }) => {
           <div className="md:w-1/3">
             <div className="p-8 rounded-3xl shadow-lg bg-white">
               <div className="w-full rounded-2xl overflow-hidden flex items-center justify-center">
-                <img src={profilepic} alt="Profile" className="w-80 h-90 object-cover" />
+                <img src={profile} alt="Profile" className="w-80 h-90 object-cover" />
               </div>
               <div className="mt-6 text-center">
                 <h3 className="text-2xl font-bold mb-2">Manikanta Sirumalla</h3>
