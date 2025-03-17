@@ -25,7 +25,7 @@ const Hero = ({ id }) => {
           </p>
           <div className="flex flex-wrap gap-4 justify-center ">
             <a 
-              href="https://drive.google.com/drive/u/0/folders/1Z9pvSYaXPocVScb-dv5-3--p2kPzZJyz" 
+              href="https://drive.google.com/file/d/1Tj-ORp2vV8j-25CTqcRpLJUgHBOlOjL_/view?usp=share_link" 
               target="_blank" 
               rel="noopener noreferrer"
               className="px-8 py-3 border border-blue-500 text-blue-500 rounded-lg font-medium hover:bg-blue-50 transition-colors"
