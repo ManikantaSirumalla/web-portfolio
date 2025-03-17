@@ -1,4 +1,4 @@
-import profilepic from '../assets/profile.JPG';
+import profilepic from '../assets/profile.jpg';
 
 const About = ({ id }) => {
   return (
@@ -8,8 +8,8 @@ const About = ({ id }) => {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3">
             <div className="p-8 rounded-3xl shadow-lg bg-white">
-              <div className="w-full aspect-square rounded-2xl overflow-hidden flex items-center justify-center">
-                <img src={profilepic} alt="Profile" className="w-full h-full" />
+              <div className="w-full rounded-2xl overflow-hidden flex items-center justify-center">
+                <img src={profilepic} alt="Profile" className="w-80 h-90 object-cover" />
               </div>
               <div className="mt-6 text-center">
                 <h3 className="text-2xl font-bold mb-2">Manikanta Sirumalla</h3>
@@ -20,18 +20,18 @@ const About = ({ id }) => {
 
           <div className="md:w-2/3">
             <div className="p-6 rounded-3xl shadow-lg bg-white h-full">
-              <h3 className="text-2xl font-bold mb-2">Innovative iOS Developer transitioning to Data Science</h3>
-              <p className="mb-2 text-gray-600">
+              <h3 className="text-2xl font-bold mb-8">Innovative iOS Developer transitioning to Data Science</h3>
+              <p className="mb-6 text-gray-600">
                 With around 3 years of experience developing iOS applications using Swift and SwiftUI, I've specialized in creating 
                 elegant, user-friendly interfaces and optimizing app performance. Currently pursuing a Master's in Data Science at 
                 the University of Maryland, Baltimore County (UMBC).
               </p>
-              <p className="mb-4 text-gray-600">
+              <p className="mb-6 text-gray-600">
                 I'm passionate about leveraging my programming expertise to solve complex problems through machine learning and 
                 data analytics. My background in iOS development gives me a unique perspective on creating data-driven applications 
                 with exceptional user experiences.
               </p>
-              <p className="mb-2 text-gray-600">
+              <p className="mb-6 text-gray-600">
                 Throughout my career, I have worked on various projects that have honed my skills in software development, problem-solving, 
                 and teamwork. My experience at ZetoStudio, Grid Dynamics, and Cognizant has provided me with a solid foundation in 
                 software engineering principles and best practices.
