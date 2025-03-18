@@ -60,7 +60,7 @@ const Hero = ({ id }) => {
             </a>
           </div>
         </div>
-        <div className="md:w-1/2 h-full absolute top-60 right-0 left-180 z-0">
+        <div className="md:w h-full absolute top-50 right-0 left-170 z-0">
           <div className="overflow-hidden rounded-3xl shadow-lg">
             <ReactPlayer 
               url={iosVideo} 

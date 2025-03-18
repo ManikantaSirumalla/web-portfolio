@@ -159,20 +159,6 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Add the gradient colors */
-.bg-gradient-to-br {
-  background: linear-gradient(to right, var(--tw-gradient-stops));
-}
-
-.from-pink-400 {
-  --tw-gradient-from:  #ff08e6d4;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(244, 114, 182, 0));
-}
-
-.to-purple-500 {
-  --tw-gradient-to:#100992a5;
-}
-
 .app-container {
   background-color: gray;
 }
