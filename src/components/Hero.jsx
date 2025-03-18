@@ -1,18 +1,32 @@
 // Hero Section Component
 
-import { useEffect } from 'react';
-import swiftLogo from '../assets/swift-logo.png';
+import { useState, useEffect } from 'react';
+import ReactPlayer from 'react-player';
+import iosVideo from '../assets/iosVideo.mov';
 
 const Hero = ({ id }) => {
+  const [playing, setPlaying] = useState(false);
+
   useEffect(() => {
-    const swiftLogo = document.getElementById('swift-logo');
-    swiftLogo.classList.add('animate-bird-fly-in');
-  }, []);
+    const handleScroll = () => {
+      const heroSection = document.getElementById(id);
+      const rect = heroSection.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      setPlaying(isVisible);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check visibility on initial load
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [id]);
 
   return (
-    <section id={id} className="min-h-screen flex items-center justify-center p-6 bg-white">
+    <section id={id} className="min-h-screen flex items-center justify-center p-6 bg-white relative">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-        <div className="md:w-1/2 mb-10 md:mb-0">
+        <div className="md:w-1/2 mb-10 md:mb-0 z-10">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
             <p>
               <span className="gradient-text">iOS Developer,</span> <br />
@@ -46,20 +60,20 @@ const Hero = ({ id }) => {
             </a>
           </div>
         </div>
-        <div className="md:w-2/5">
-          <div className="relative">
-          <div className="w-full h-96 bg-gradient-to-br from-pink-400 to-purple-500 rounded-3xl shadow-xl flex items-center justify-center z-10">
-              <img id="swift-logo" src={swiftLogo} alt="SwiftLogo" className="w-80 h-80" />
-            </div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-2xl transform rotate-12 z-0 flex items-center justify-center">
-              <span className="text-white font-bold text-6xl opacity-40">ML</span>
-            </div>
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-pink-500 rounded-full z-0 flex items-center justify-center">
-              <span className="text-white font-bold text-6xl opacity-40 ">AI</span>
-            </div>
+        <div className="md:w-1/2 h-full absolute top-60 right-0 left-180 z-0">
+          <div className="overflow-hidden rounded-3xl shadow-lg">
+            <ReactPlayer 
+              url={iosVideo} 
+              playing={playing} 
+              muted 
+              width="100%" 
+              height="100%" 
+              className="rounded-3xl"
+            />
           </div>
         </div>
       </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-white to-transparent z-0"></div>
     </section>
   );
 };
