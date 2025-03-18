@@ -24,7 +24,7 @@ const Hero = ({ id }) => {
   }, [id]);
 
   return (
-    <section id={id} className="min-h-screen flex items-center justify-center p-6 bg-white relative">
+    <section id={id} className="min-h-screen flex items-center justify-center p-6 bg-gray-100 relative">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-10 md:mb-0 z-10">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
@@ -60,7 +60,7 @@ const Hero = ({ id }) => {
             </a>
           </div>
         </div>
-        <div className="md:w h-full absolute top-50 right-0 left-170 z-0">
+        <div className="md:w h-full absolute top-60 right-10 left-180 z-0">
           <div className="overflow-hidden rounded-3xl shadow-lg">
             <ReactPlayer 
               url={iosVideo} 
