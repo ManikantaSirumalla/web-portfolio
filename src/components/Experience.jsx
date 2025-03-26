@@ -4,7 +4,7 @@ import cognizantlogo from '../assets/cognizantlogo.png';
 
 const Experience = ({ id }) => {
   return (
-    <section id={id} className="py-20 px-6 bg-gray-100">
+    <section id={id} className="py-20 px-6 bg-gray-10min-h-screen flex items-center justify-center relative bg-white/1 backdrop-blur-[2px]">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Work Experience</h2>
         

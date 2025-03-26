@@ -32,12 +32,12 @@ const Contact = ({ id }) => {
   };
 
   return (
-    <section id={id} className="py-20 px-6 bg-gray-100">
+    <section id={id} className="min-h-screen flex items-center justify-center relative bg-white/1 backdrop-blur-[2px]">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Get In Touch</h2>
         <div className="flex flex-col md:flex-row gap-12">
           <div className="md:w-1/2">
-            <div className="p-8 rounded-3xl shadow-lg bg-white">
+            <div className="p-8 rounded-3xl shadow-lg bg-white/80">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-8">
                 <div className="flex items-start">
@@ -68,10 +68,9 @@ const Contact = ({ id }) => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div>          </div>
           <div className="md:w-1/2">
-            <div className="p-8 rounded-3xl shadow-lg bg-white">
+            <div className="p-8 rounded-3xl shadow-lg bg-white/80">
               <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
               <form ref={form} onSubmit={sendEmail} className="space-y-5">
                 <div>

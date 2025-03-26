@@ -1,7 +1,7 @@
 // Footer Component
 const Footer = () => {
   return (
-    <footer className="py-10 px-6 border-t bg-gray-100 border-gray-200">
+    <footer className="py-10 px-6 border-t bg-gray-50 border-gray-50">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">

@@ -2,12 +2,12 @@ import profile from '../assets/profile.png';
 
 const About = ({ id }) => {
   return (
-    <section id={id} className="py-20 px-6 bg-gray-100">
+    <section id={id} className="min-h-screen flex items-center justify-center relative bg-white/5 backdrop-blur-[2px]">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">About Me</h2>
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3">
-            <div className="p-8 rounded-3xl shadow-lg bg-white">
+            <div className="p-8 rounded-3xl shadow-lg bg-white/20 backdrop-blur-sm">
               <div className="w-full rounded-2xl overflow-hidden flex items-center justify-center">
                 <img src={profile} alt="Profile" className="w-80 h-90 object-cover" />
               </div>
@@ -19,7 +19,7 @@ const About = ({ id }) => {
           </div>
 
           <div className="md:w-2/3">
-            <div className="p-6 rounded-3xl shadow-lg bg-white h-full">
+            <div className="p-6 rounded-3xl shadow-lg bg-white/20 backdrop-blur-sm h-full">
               <h3 className="text-2xl font-bold mb-8">Innovative iOS Developer transitioning to Data Science</h3>
               <p className="mb-6 text-gray-600">
                 With around 3 years of experience developing iOS applications using Swift and SwiftUI, I've specialized in creating 
@@ -38,12 +38,12 @@ const About = ({ id }) => {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-gray-100">
+                <div className="p-4 rounded-xl bg-white/30 backdrop-blur-sm">
                   <h4 className="font-medium mb-2">Education</h4>
                   <p className="text-gray-600">Masters in Data Science, UMBC</p>
                   <p className="text-gray-600">B.Tech in Computer Science</p>
                 </div>
-                <div className="p-4 rounded-xl bg-gray-100">
+                <div className="p-4 rounded-xl bg-white/30 backdrop-blur-sm">
                   <h4 className="font-medium mb-2">Location</h4>
                   <p className="text-gray-600">Baltimore, MD, USA</p>
                   <p className="text-gray-600">Available for remote work</p>

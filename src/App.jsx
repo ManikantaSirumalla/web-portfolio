@@ -10,6 +10,7 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Background from './components/Background';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,16 +35,19 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container">
-      <Header activeSection={activeSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Hero id="home" />
-      <About id="about" />
-      <Experience id="experience" />
-      <Projects id="projects" />
-      <Skills id="skills" />
-      <Contact id="contact" />
-      <Footer />
-    </div>
+    <>
+      <Background />
+      <div className="app-container">
+        <Header activeSection={activeSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Hero id="home" />
+        <About id="about" />
+        <Experience id="experience" />
+        <Projects id="projects" />
+        <Skills id="skills" />
+        <Contact id="contact" />
+        <Footer />
+      </div>
+    </>
   );
 }
 

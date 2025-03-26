@@ -70,9 +70,9 @@ const Skills = ({ id }) => {
   ];
 
   return (
-    <section id={id} className="py-20 px-6 bg-gray-100">
+    <section id={id} className="min-h-screen flex items-center justify-center relative bg-white/1 backdrop-blur-[2px]">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Skills & Expertise</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center pt-20">Skills & Expertise</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {skillCategories.map((category, index) => (

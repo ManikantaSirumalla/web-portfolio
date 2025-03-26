@@ -24,7 +24,7 @@ const Hero = ({ id }) => {
   }, [id]);
 
   return (
-    <section id={id} className="min-h-screen flex items-center justify-center p-6 bg-gray-100 relative">
+    <section id={id} className="min-h-screen flex items-center justify-center relative bg-white/1 backdrop-blur-0">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-10 md:mb-0 z-10">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
@@ -73,7 +73,7 @@ const Hero = ({ id }) => {
           </div>
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-white to-transparent z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-transparent z-0"></div>
     </section>
   );
 };

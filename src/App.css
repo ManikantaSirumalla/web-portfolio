@@ -161,4 +161,11 @@
 
 .app-container {
   background-color: gray;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+section {
+  backdrop-filter: blur(10px);
 }
