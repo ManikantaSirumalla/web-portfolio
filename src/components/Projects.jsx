@@ -3,6 +3,7 @@ import newswaveImage from '../assets/newswave.png';
 import whimAIImage from '../assets/whimAI.png';
 import phototalesImage from '../assets/phototales.png';
 import calculatorImage from '../assets/calculator.png';
+import sentimentAnalysisImage from '../assets/sentimentAnalysis.jpg';
 
 const Projects = ({ id }) => {
   const [activeProject, setActiveProject] = useState(0);
@@ -71,6 +72,23 @@ const Projects = ({ id }) => {
       techStack: "Python, Pandas, NumPy, Scikit-learn, Matplotlib",
       image: null
     },
+    {
+      title: "Trading on Trends",
+      description: "A sophisticated machine learning system that analyzes Reddit sentiment to predict stock market movements, combining NLP techniques with financial data analysis.",
+      features: [
+        "Sentiment Analysis on Reddit posts/comments for stock tickers",
+        "Real-time financial data integration via Yahoo Finance",
+        "Advanced NLP text cleaning and processing",
+        "Dual Model Architecture (Logistic & Ridge Regression)",
+        "Time-series feature engineering",
+        "Interactive visualizations for price trends and sentiment correlation",
+        "Automated data pipeline with OOP principles",
+        "RESTful Flask API for real-time predictions",
+        "Comprehensive evaluation metrics tracking: Accuracy, Precision, Recall, F1 Score, ROC-AUC"
+      ],
+      techStack: "Python, Reddit API, Yahoo Finance API, pandas, numpy, scikit-learn, TextBlob, NLTK, Flask, matplotlib, seaborn, plotly, Ngrok",
+      image: sentimentAnalysisImage
+    },
   ]);
 
   return (
@@ -123,7 +141,7 @@ const Projects = ({ id }) => {
                 </div>
                 
                 <div className="p-20">
-                  <p className="text-gray-600 mb-6 mt-6">{projects[activeProject].description}</p>
+                  <p className="text-gray-600 mb-6 mt-12">{projects[activeProject].description}</p>
                   
                   <div className="mb-6">
                     <h4 className="font-medium mb-3">Key Features:</h4>
