@@ -1,26 +1,26 @@
 // Header Component
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Header = ({ activeSection, menuOpen, setMenuOpen }) => {
     const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-  
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      setLastScrollY(window.scrollY);
-    };
-  
+    const lastScrollY = useRef(0);
+
     useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > lastScrollY.current) {
+          setIsVisible(false);
+        } else {
+          setIsVisible(true);
+        }
+        lastScrollY.current = window.scrollY;
+      };
+
       window.addEventListener('scroll', handleScroll);
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
-    }, [lastScrollY]);
+    }, []);
   
     const navItems = [
       { id: 'home', label: 'Home' },
@@ -66,6 +66,8 @@ const Header = ({ activeSection, menuOpen, setMenuOpen }) => {
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="hover:text-blue-500"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
             >
               {menuOpen ? '✕' : '☰'}
             </button>

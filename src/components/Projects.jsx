@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import newswaveImage from '../assets/newswave.png';
 import whimAIImage from '../assets/whimAI.png';
 import phototalesImage from '../assets/phototales.png';
 import calculatorImage from '../assets/calculator.png';
 import sentimentAnalysisImage from '../assets/sentimentAnalysis.jpg';
 
-const Projects = ({ id }) => {
-  const [activeProject, setActiveProject] = useState(0);
-  const [projects, setProjects] = useState([
+const projects = [
     {
+      id: "newswave",
       title: "NewsWave",
       description: "A news aggregation app with multiple categories providing diverse content for users.",
       features: [
@@ -22,6 +21,7 @@ const Projects = ({ id }) => {
       image: newswaveImage
     },
     {
+      id: "whimai",
       title: "WhimAI",
       description: "An AI-powered chat application with voice input, text-to-speech, and multi-image support for interactive conversations.",
       features: [
@@ -36,6 +36,7 @@ const Projects = ({ id }) => {
       image: whimAIImage
     },
     {
+      id: "phototales",
       title: "PhotoTales",
       description: "An iOS application designed to provide users with a seamless experience in searching and viewing images along with their descriptions.",
       features: [
@@ -49,6 +50,7 @@ const Projects = ({ id }) => {
       image: phototalesImage
     },
     {
+      id: "calculator",
       title: "Calculator",
       description: "A user-friendly iOS application designed to perform basic arithmetic operations efficiently.",
       features: [
@@ -61,6 +63,7 @@ const Projects = ({ id }) => {
       image: calculatorImage
     },
     {
+      id: "grad-admissions",
       title: "Graduate Admissions Predictor with ML (Academic project)",
       description: "A predictive model to analyze university admission chances based on various factors.",
       features: [
@@ -73,6 +76,7 @@ const Projects = ({ id }) => {
       image: null
     },
     {
+      id: "trading-on-trends",
       title: "Trading on Trends",
       description: "A sophisticated machine learning system that analyzes Reddit sentiment to predict stock market movements, combining NLP techniques with financial data analysis.",
       features: [
@@ -89,7 +93,10 @@ const Projects = ({ id }) => {
       techStack: "Python, Reddit API, Yahoo Finance API, pandas, numpy, scikit-learn, TextBlob, NLTK, Flask, matplotlib, seaborn, plotly, Ngrok",
       image: sentimentAnalysisImage
     },
-  ]);
+];
+
+const Projects = ({ id }) => {
+  const [activeProject, setActiveProject] = useState(0);
 
   return (
     <section id={id} className="pymin-h-screen flex items-center justify-center relative bg-white/1 backdrop-blur-[2px]">
@@ -103,8 +110,8 @@ const Projects = ({ id }) => {
               <h3 className="text-xl font-bold mb-4">My Projects</h3>
               <div className="space-y-3">
                 {projects.map((project, index) => (
-                  <button 
-                    key={index}
+                  <button
+                    key={project.id}
                     onClick={() => {
                       setActiveProject(-1); // Temporarily set to -1 to trigger re-render
                       setTimeout(() => setActiveProject(index), 100); // Set to the actual index after a short delay
@@ -146,8 +153,8 @@ const Projects = ({ id }) => {
                   <div className="mb-6">
                     <h4 className="font-medium mb-3">Key Features:</h4>
                     <ul className="grid grid-cols-2 gap-x-8 list-disc list-outside text-left">
-                      {projects[activeProject].features.map((feature, index) => (
-                        <li key={index} className="text-gray-600 text-sm mb-3">
+                      {projects[activeProject].features.map((feature) => (
+                        <li key={feature} className="text-gray-600 text-sm mb-3">
                           {feature}
                         </li>
                       ))}
@@ -156,9 +163,9 @@ const Projects = ({ id }) => {
                   <div>
                     <h4 className="font-medium mb-2">Tech Stack:</h4>
                     <div className="flex flex-wrap gap-2">
-                      {projects[activeProject].techStack.split(', ').map((tech, index) => (
-                        <span 
-                          key={index} 
+                      {projects[activeProject].techStack.split(', ').map((tech) => (
+                        <span
+                          key={tech}
                           className="px-3 py-1 text-sm rounded-full bg-gray-100 text-gray-700"
                         >
                           {tech}
