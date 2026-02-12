@@ -1,12 +1,17 @@
+import { useEffect } from 'react';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    // Redirect to the static portfolio document to avoid iframe-related
+    // deployment issues (headers/routing) on some hosts.
+    window.location.replace('/my_portfolio_2026.html');
+  }, []);
+
   return (
-    <iframe
-      title="Portfolio 2026"
-      src="/my_portfolio_2026.html"
-      style={{ width: '100%', height: '100vh', border: 'none', display: 'block' }}
-    />
+    <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
+      Loading portfolio...
+    </div>
   );
 }
 
