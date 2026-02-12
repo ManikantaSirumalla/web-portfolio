@@ -1124,7 +1124,7 @@ button { font-family: inherit; }
 
       <div class="hero-stats">
         <div><div class="hs-value" data-count="3">0+</div><div class="hs-label">Years Experience</div></div>
-        <div><div class="hs-value" data-count="10">0+</div><div class="hs-label">Apps Shipped</div></div>
+        <div><div class="hs-value">Multiple</div><div class="hs-label">Apps</div></div>
         <div><div class="hs-value" data-count="6">0+</div><div class="hs-label">Publications</div></div>
       </div>
     </div>
@@ -1266,8 +1266,6 @@ button { font-family: inherit; }
           <p class="project-desc">Comprehensive health tracker with on-device ML for biometric anomaly detection. Real-time heart rate analysis, sleep patterns, and personalized insights — all processed locally for privacy.</p>
           <div class="project-stack"><span>SwiftUI</span><span>CoreML</span><span>HealthKit</span><span>TF Lite</span><span>Create ML</span></div>
           <div class="project-metrics">
-            <div><div class="pm-value">500K+</div><div class="pm-label">Active Users</div></div>
-            <div><div class="pm-value">4.8★</div><div class="pm-label">App Store</div></div>
             <div><div class="pm-value">94%</div><div class="pm-label">Precision</div></div>
           </div>
         </div>
@@ -1295,8 +1293,6 @@ button { font-family: inherit; }
           <p class="project-desc">Offline-first task management built with SwiftUI. Adaptive Pomodoro timers, ML-driven task prioritization, and seamless CloudKit sync with complex conflict resolution.</p>
           <div class="project-stack"><span>Swift</span><span>SwiftUI</span><span>CoreData</span><span>CloudKit</span><span>Widgets</span></div>
           <div class="project-metrics">
-            <div><div class="pm-value">200K+</div><div class="pm-label">Downloads</div></div>
-            <div><div class="pm-value">4.7★</div><div class="pm-label">App Store</div></div>
             <div><div class="pm-value">32%</div><div class="pm-label">Productivity ↑</div></div>
           </div>
         </div>
@@ -1657,7 +1653,7 @@ document.querySelectorAll('[data-project]').forEach(card => {
   card.addEventListener('click', () => {
     const projectId = card.getAttribute('data-project');
     if (projectId) {
-      window.location.href = `/project-detail.html?project=${encodeURIComponent(projectId)}`;
+      window.location.href = `project-detail.html?project=${encodeURIComponent(projectId)}`;
     }
   });
 });
