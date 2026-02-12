@@ -1,52 +1,79 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-// Import components
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Experience from './components/Experience';
+import Testimonials from './components/Testimonials';
+import Publications from './components/Publications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Background from './components/Background';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [theme, setTheme] = useState('dark');
 
-  const handleScroll = () => {
-    const sections = document.querySelectorAll('section');
-    const scrollPos = window.scrollY + window.innerHeight / 2;
+  const toggleTheme = useCallback(() => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+  }, [theme]);
 
-    sections.forEach(section => {
-      if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
-        setActiveSection(section.id);
-      }
-    });
-  };
-
+  // Intersection Observer for .reveal elements
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('in');
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
+  // Proficiency bar animation observer
+  useEffect(() => {
+    const barObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target.dataset.observed === 'false') {
+            entry.target.dataset.observed = 'true';
+            entry.target.querySelectorAll('.prof-fill').forEach((bar, i) => {
+              setTimeout(() => {
+                bar.style.width = bar.dataset.w + '%';
+              }, i * 120);
+            });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    document.querySelectorAll('.proficiency').forEach((el) => barObs.observe(el));
+    return () => barObs.disconnect();
   }, []);
 
   return (
     <>
-      <Background />
-      <div className="app-container">
-        <Header activeSection={activeSection} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Hero id="home" />
-        <About id="about" />
-        <Experience id="experience" />
-        <Projects id="projects" />
-        <Skills id="skills" />
-        <Contact id="contact" />
-        <Footer />
-      </div>
+      <Header
+        theme={theme}
+        toggleTheme={toggleTheme}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+      />
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Testimonials />
+      <Publications />
+      <Contact />
+      <Footer />
     </>
   );
 }
