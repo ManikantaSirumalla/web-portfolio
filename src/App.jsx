@@ -1,16 +1,12 @@
-import { useEffect } from 'react';
 import './App.css';
 
 function App() {
-  useEffect(() => {
-    // Redirect to the static portfolio document to avoid iframe-related
-    // deployment issues (headers/routing) on some hosts.
-    window.location.replace('/my_portfolio_2026.html');
-  }, []);
-
   return (
-    <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
-      Loading portfolio...
+    <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', textAlign: 'center', padding: '24px' }}>
+      <div>
+        <p style={{ marginBottom: '12px' }}>Opening portfolio...</p>
+        <a href="/my_portfolio_2026.html">If you are not redirected, open the portfolio</a>
+      </div>
     </div>
   );
 }

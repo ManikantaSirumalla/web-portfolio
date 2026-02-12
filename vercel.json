@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/my_portfolio_2026.html"
+    }
+  ]
+}
