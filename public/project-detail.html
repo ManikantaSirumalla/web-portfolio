@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details</title>
+  <style>
+    :root {
+      --bg: #000;
+      --bg-elevated: #0d0d0d;
+      --card: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f5f5f7;
+      --muted: #86868b;
+      --accent: #2997ff;
+      --gradient: linear-gradient(90deg, #2997ff, #30d158);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 36px 20px 60px;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+    .back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--muted); text-decoration: none; margin-bottom: 24px;
+      border: 1px solid var(--border); border-radius: 999px; padding: 8px 14px;
+      background: var(--card);
+    }
+    .title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin: 0 0 8px;
+      letter-spacing: -0.03em;
+    }
+    .tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .grid { display: grid; gap: 18px; grid-template-columns: 1.4fr 1fr; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+    .muted { color: var(--muted); }
+    ul { margin: 0; padding-left: 18px; }
+    li { margin-bottom: 8px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: .8rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+    }
+    .metrics { display: flex; gap: 16px; flex-wrap: wrap; }
+    .metric {
+      min-width: 110px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+    }
+    .metric-value {
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .not-found {
+      margin-top: 40px;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/my_portfolio_2026.html#work">← Back to Projects</a>
+    <div id="content"></div>
+  </div>
+
+  <script>
+    const PROJECTS = {
+      "healthpulse": {
+        title: "HealthPulse — AI Health Companion",
+        tag: "iOS + CoreML",
+        overview: "Comprehensive health tracker with on-device machine learning for biometric anomaly detection and personalized insights.",
+        features: [
+          "On-device anomaly detection for privacy-first insights",
+          "Real-time heart rate and sleep trend analysis",
+          "Personalized recommendations based on user behavior",
+          "Production-ready SwiftUI UX and native performance"
+        ],
+        tech: ["SwiftUI", "CoreML", "HealthKit", "TensorFlow Lite", "Create ML"],
+        extra: "This project demonstrates product-level thinking: privacy, UX, and intelligence are designed together rather than added later.",
+        metrics: [["500K+", "Active Users"], ["4.8★", "App Store"], ["94%", "Precision"]]
+      },
+      "flowstate": {
+        title: "FlowState — Productivity Reimagined",
+        tag: "iOS Development",
+        overview: "Offline-first task management app with adaptive productivity workflows and robust sync conflict handling.",
+        features: [
+          "Offline-first architecture with resilient data sync",
+          "Adaptive Pomodoro flows and task suggestions",
+          "CloudKit sync with conflict resolution strategies",
+          "Widget support for glanceable daily planning"
+        ],
+        tech: ["Swift", "SwiftUI", "CoreData", "CloudKit", "Widgets"],
+        extra: "A strong example of balancing reliability and delight: it still feels polished while solving hard sync and state problems.",
+        metrics: [["200K+", "Downloads"], ["4.7★", "App Store"], ["32%", "Productivity ↑"]]
+      },
+      "newswave": {
+        title: "NewsWave — News Aggregation",
+        tag: "SwiftUI",
+        overview: "Multi-category news experience with trending, search, bookmarks, and social sharing.",
+        features: [
+          "Category-wise feed system with clean navigation",
+          "Trending and keyword-driven search flows",
+          "Bookmarking and sharing for user retention",
+          "Custom animated tab bar interactions"
+        ],
+        tech: ["SwiftUI", "Combine", "Codable", "Kingfisher", "Firebase", "Firestore"],
+        extra: "Strong consumer app fundamentals: content discovery + speed + retention mechanics.",
+        metrics: [["6", "Categories"], ["Realtime", "Updates"], ["Smooth", "Navigation"]]
+      },
+      "whimai": {
+        title: "WhimAI",
+        tag: "Swift + AI",
+        overview: "AI-powered conversational iOS app focused on expressive interactions and polished native UX.",
+        features: [
+          "Voice-enabled conversational interface",
+          "Intelligent multimodal interactions",
+          "Native iOS design language and fluid transitions"
+        ],
+        tech: ["Swift", "UIKit", "CoreML"],
+        extra: "Highlights your strength in turning AI capability into user-friendly mobile experiences.",
+        metrics: [["AI", "Powered"], ["Native", "UX"], ["iOS", "Focused"]]
+      },
+      "phototales": {
+        title: "PhotoTales",
+        tag: "Swift",
+        overview: "Photography and storytelling app designed for rich visual narratives and intuitive browsing.",
+        features: [
+          "High-quality image presentation",
+          "Narrative-focused content layout",
+          "Responsive media interactions"
+        ],
+        tech: ["Swift", "AVFoundation", "UIKit"],
+        extra: "Great representation of visual craftsmanship and media handling in native iOS.",
+        metrics: [["Visual", "First"], ["Media", "Rich"], ["Smooth", "Flow"]]
+      },
+      "calculator": {
+        title: "Calculator",
+        tag: "Swift Utility",
+        overview: "Clean and dependable utility app for everyday arithmetic with polished UX.",
+        features: [
+          "Accurate arithmetic operations",
+          "Minimal, distraction-free interface",
+          "Fast interactions with native performance"
+        ],
+        tech: ["Swift", "UIKit", "AutoLayout"],
+        extra: "Shows attention to detail even in simple products — clarity, correctness, and speed.",
+        metrics: [["Fast", "Input"], ["Simple", "UX"], ["Reliable", "Logic"]]
+      },
+      "job-market-analysis-platform": {
+        title: "Job Market Analysis Platform",
+        tag: "Big Data Analytics",
+        overview: "End-to-end analytics platform for tech job trends, salary prediction, and skill demand intelligence.",
+        features: [
+          "3-layer data lake architecture (Raw/Bronze/Silver/Gold)",
+          "Distributed batch + streaming processing pipelines",
+          "Model tracking and experiment reproducibility",
+          "Interactive analytics delivery with low-latency APIs"
+        ],
+        tech: ["Apache Spark", "Delta Lake", "Airflow", "Kafka", "MLflow", "XGBoost", "FastAPI", "Docker"],
+        extra: "A complete data product story from ingestion to model serving to business-facing dashboards.",
+        metrics: [["129 GB", "Processed"], ["2.7M+", "Records"], ["<100ms", "API"]]
+      },
+      "expense-fraud-detection-system": {
+        title: "Expense Fraud Detection System",
+        tag: "Anomaly Detection",
+        overview: "Enterprise fraud detection pipeline with engineered features and actionable review workflows.",
+        features: [
+          "Normalized data model for expense intelligence",
+          "Isolation Forest model for outlier detection",
+          "Feature engineering across spending behavior dimensions",
+          "Interactive review dashboard for investigation"
+        ],
+        tech: ["Python", "SQL Server", "Scikit-Learn", "SQLAlchemy", "Streamlit", "Plotly", "Docker"],
+        extra: "Combines ML rigor with operations readiness, making model output useful for real teams.",
+        metrics: [["159", "Anomalies"], ["37", "High Risk"], ["227%", "Lift"]]
+      },
+      "customer-churn-prediction-system": {
+        title: "Customer Churn Prediction System",
+        tag: "Classification",
+        overview: "Multi-model churn prediction framework with feature engineering and explainability.",
+        features: [
+          "7+ model benchmarking and tuning strategy",
+          "40+ engineered features",
+          "SHAP-based explainability for business interpretation",
+          "Repeatable evaluation and model selection pipeline"
+        ],
+        tech: ["Python", "Scikit-Learn", "XGBoost", "Pandas", "SHAP", "Matplotlib", "Seaborn"],
+        extra: "Strong demonstration of end-to-end ML workflow with practical explainability.",
+        metrics: [["7+", "Models"], ["40+", "Features"], ["SHAP", "XAI"]]
+      },
+      "graduate-admissions-predictor": {
+        title: "Graduate Admissions Predictor",
+        tag: "Machine Learning",
+        overview: "Predictive model estimating admission probability using academic and profile signals.",
+        features: [
+          "Feature pipeline for applicant profile signals",
+          "Comparative baseline and tuned model evaluation",
+          "Interpretability for decision rationale"
+        ],
+        tech: ["Python", "Pandas", "NumPy", "Scikit-learn", "Matplotlib"],
+        extra: "Solid academic-to-practical ML problem framing and execution.",
+        metrics: [["Academic", "Project"], ["Predictive", "Model"], ["Explainable", "Output"]]
+      },
+      "trading-on-trends": {
+        title: "Trading on Trends",
+        tag: "NLP + Finance",
+        overview: "Sentiment-driven market analysis system linking social signals with stock movement insights.",
+        features: [
+          "Reddit sentiment ingestion and scoring",
+          "Financial timeseries feature engineering",
+          "Model-based movement prediction workflows",
+          "Visualization of sentiment-to-price relationships"
+        ],
+        tech: ["Python", "Reddit API", "Yahoo Finance API", "Scikit-learn", "Flask", "Plotly"],
+        extra: "Distinctive cross-domain project that combines NLP, finance, and model delivery.",
+        metrics: [["NLP", "Signals"], ["Market", "Data"], ["API", "Ready"]]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('project');
+    const p = id ? PROJECTS[id] : null;
+    const root = document.getElementById('content');
+
+    if (!p) {
+      root.innerHTML = '<div class="not-found">Project not found. Go back and choose a valid project card.</div>';
+    } else {
+      root.innerHTML = `
+        <h1 class="title">${p.title}</h1>
+        <div class="tag">${p.tag}</div>
+        <div class="grid">
+          <section class="card">
+            <h3>What Is It?</h3>
+            <p class="muted">${p.overview}</p>
+          </section>
+          <section class="card">
+            <h3>Tech Stack</h3>
+            <div class="chips">${p.tech.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+          </section>
+          <section class="card">
+            <h3>Key Features</h3>
+            <ul class="muted">${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+          </section>
+          <section class="card">
+            <h3>Extra Insights</h3>
+            <p class="muted">${p.extra}</p>
+          </section>
+        </div>
+        <section class="card" style="margin-top:18px;">
+          <h3>Highlights</h3>
+          <div class="metrics">${p.metrics.map(m => `<div class="metric"><div class="metric-value">${m[0]}</div><div class="muted" style="font-size:.8rem">${m[1]}</div></div>`).join('')}</div>
+        </section>
+      `;
+    }
+  </script>
+</body>
+</html>
