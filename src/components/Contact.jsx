@@ -1,131 +1,60 @@
-import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
-import phoneIcon from '../assets/phone.png';
-import emailIcon from '../assets/email.png';
-import locationIcon from '../assets/location.png';
-
-// Contact Section Component
-const Contact = ({ id }) => {
-  const form = useRef();
-  const [status, setStatus] = useState('');
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        'service_4z8ixl9', // Replace with your EmailJS service ID
-        'template_zvmgk7g', // Replace with your EmailJS template ID
-        form.current,
-        'gz7Td505NsnUtZ0YJ' // Replace with your EmailJS public key
-      )
-      .then(
-        () => {
-          setStatus('Message sent successfully!');
-          form.current.reset();
-        },
-        (error) => {
-          setStatus('Failed to send the message. Please try again.');
-          console.error('EmailJS Error:', error.text);
-        }
-      );
-  };
-
+export default function Contact() {
   return (
-    <section id={id} className="min-h-screen flex items-center justify-center relative bg-white/1 backdrop-blur-[2px]">
-      <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Get In Touch</h2>
-        <div className="flex flex-col md:flex-row gap-12">
-          <div className="md:w-1/2">
-            <div className="p-8 rounded-3xl shadow-lg bg-white/80">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <div className="space-y-8">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-blue-500 mr-4">
-                    <img src={phoneIcon} alt="Phone Icon" className="w-8 h-8" />
-                  </div>
-                  <div className="text-left">
-                    <h4 className="font-medium mb-1">Phone</h4>
-                    <p className="text-gray-600">+1 410-900-4265</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-blue-500 mr-4">
-                    <img src={emailIcon} alt="Email Icon" className="w-8 h-8" />
-                  </div>
-                  <div className="text-left">
-                    <h4 className="font-medium mb-1">Email</h4>
-                    <p className="text-gray-600">contact@manikantasirumalla.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-blue-500 mr-4">
-                    <img src={locationIcon} alt="Location Icon" className="w-8 h-8" />
-                  </div>
-                  <div className="text-left">
-                    <h4 className="font-medium mb-1">Location</h4>
-                    <p className="text-gray-600">Baltimore, MD</p>
-                  </div>
-                </div>
-              </div>
-            </div>          </div>
-          <div className="md:w-1/2">
-            <div className="p-8 rounded-3xl shadow-lg bg-white/80">
-              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
-              <form ref={form} onSubmit={sendEmail} className="space-y-5">
-                <div>
-                  <label htmlFor="user_name" className="block text-sm font-medium mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="user_name"
-                    name="user_name"
-                    className="w-full px-4 py-3 rounded-lg bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500 border focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="user_email" className="block text-sm font-medium mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="user_email"
-                    name="user_email"
-                    className="w-full px-4 py-3 rounded-lg bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500 border focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    className="w-full px-4 py-3 rounded-lg bg-gray-100 border-gray-300 text-gray-900 placeholder-gray-500 border focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Your message here..."
-                    required
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 px-6 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
-              {status && <p className="mt-4 text-center text-green-500">{status}</p>}
-            </div>
-          </div>
+    <section className="contact-section" id="contact">
+      <div className="section-inner">
+        <p className="section-eyebrow reveal">Contact</p>
+        <h2 className="contact-heading reveal d1">
+          Let&apos;s build<br />something <span className="text-gradient">great</span>.
+        </h2>
+        <p className="contact-sub reveal d2">
+          Looking for an iOS developer with a data science edge? I&apos;m in Baltimore, MD and
+          available for full-time or remote work.
+        </p>
+        <div className="contact-actions reveal d3">
+          <a href="mailto:contact@manikantasirumalla.com" className="btn btn-filled">
+            contact@manikantasirumalla.com
+          </a>
+          <a href="tel:+14109004265" className="btn btn-outline">+1 410-900-4265</a>
+        </div>
+        <div className="contact-links reveal d4">
+          <a
+            href="https://github.com/ManikantaSirumalla"
+            className="contact-pill"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+            </svg>{' '}
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/manikantasirumalla"
+            className="contact-pill"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>{' '}
+            LinkedIn
+          </a>
+          <a
+            href="https://medium.com/@manikantasirumalla"
+            className="contact-pill"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 4h16v16H4z" />
+              <path d="M8 8h8M8 12h8M8 16h4" />
+            </svg>{' '}
+            Medium
+          </a>
         </div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}
