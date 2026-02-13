@@ -363,6 +363,7 @@ button { font-family: inherit; }
   opacity: 0; transform: translateY(20px);
   animation: fadeUp 0.8s var(--ease) 0.45s forwards;
 }
+.hero-headline-small { font-size: 0.72em; }
 
 .text-gradient { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
@@ -391,6 +392,14 @@ button { font-family: inherit; }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 .btn-ghost { background: transparent; color: var(--accent); border: none; }
 .btn-ghost:hover { text-decoration: underline; }
+.btn-resume {
+  background: var(--bg-card);
+  color: var(--text-1);
+  border: 0.5px solid var(--border);
+  font-size: 0.84rem;
+  padding: 10px 16px;
+}
+.btn-resume:hover { border-color: var(--accent); color: var(--accent); }
 
 .hero-stats {
   display: flex; gap: 32px; margin-top: 48px; padding-top: 28px;
@@ -598,7 +607,7 @@ button { font-family: inherit; }
 
 /* Tech marquee */
 .hero-tech-strip {
-  position: absolute; bottom: 32px; left: 0; right: 0;
+  position: absolute; bottom: 0; left: 0; right: 0;
   z-index: 5; overflow: hidden;
 }
 .hero-tech-strip::before, .hero-tech-strip::after {
@@ -1106,20 +1115,21 @@ button { font-family: inherit; }
   <div class="hero-inner">
     <!-- LEFT: Text -->
     <div class="hero-text">
-      <div class="hero-badge"><span class="badge-dot"></span> Available for opportunities — Baltimore, MD</div>
+      <div class="hero-badge"><span class="badge-dot"></span> Open to Full-Time iOS Opportunities</div>
 
       <h1 class="hero-headline">
-        <span class="text-gradient">iOS.</span> Data Science.<br>Perfection.
+        <span class="text-gradient">Built in Swift.</span><br>Powered by Data.<br><span class="hero-headline-small">Refined to Perfection.</span>
       </h1>
 
       <p class="hero-sub">
-        I'm Manikanta Sirumalla — an iOS Developer & Data Science Enthusiast crafting elegant, performant apps with Swift and SwiftUI. Currently pursuing my Master's in Data Science at UMBC.
+        I'm Manikanta Sirumalla, an iOS Developer with 3+ years of experience building production apps in Swift, SwiftUI, and UIKit. I create mobile products that are reliable, scalable, and polished, while applying data science to add meaningful intelligence.
       </p>
 
       <div class="hero-actions">
         <a href="#work" class="btn btn-filled">See my work</a>
         <a href="#contact" class="btn btn-outline">Get in touch</a>
-        <a href="#" class="btn btn-ghost">Resume ›</a>
+        <a href="/Manikanta_Sirumalla_iOS_Resume.pdf" class="btn btn-resume" download>iOS Resume</a>
+        <a href="/Manikanta_Sirumalla_Data_Science_ML_Resume.pdf" class="btn btn-resume" download>Data Science / ML Resume</a>
       </div>
 
       <div class="hero-stats">
@@ -1142,7 +1152,6 @@ button { font-family: inherit; }
           <div class="hero-live-main">Building iOS + ML products</div>
           <div class="hero-live-sub">Open to full-time roles · Remote/Onsite</div>
         </div>
-        <div class="hero-deco-line"></div>
         <div class="hero-deco-curve"></div>
         <img src="/hero-photo-deploy.png" alt="Manikanta" onerror="if(this.src.indexOf('/public/hero-photo-deploy.png')===-1){this.src='/public/hero-photo-deploy.png';}">
         <div class="float-badge float-badge-hello">Hello</div>
@@ -1171,16 +1180,16 @@ button { font-family: inherit; }
   <div class="section-inner">
     <p class="section-eyebrow reveal">About</p>
     <p class="about-statement reveal d1">
-      I'm an iOS Developer with <strong>~3 years building production apps</strong> using Swift and SwiftUI, focused on elegant UI and performance. Currently pursuing my <strong>Master's in Data Science at UMBC</strong>, I'm passionate about bridging the gap between beautiful mobile experiences and data-driven intelligence.
+      I bring a hybrid profile across iOS engineering and data science, with a strong focus on product outcomes. Over the last 3+ years, I have worked on real-world mobile applications from idea to release, handled production issues, improved performance, and built features that directly improve user engagement. Alongside engineering, I am pursuing my Master's in Data Science at UMBC to design smarter product experiences using practical machine learning.
     </p>
     <div class="about-details">
       <div class="about-detail reveal d2">
-        <div class="about-detail-label">Mobile Craft</div>
-        <p>I build iOS apps with precision — MVC, MVVM, Delegate patterns, buttery SwiftUI animations, and performance optimizations that make a real difference. From custom tab bars to localized multi-language apps, I care about every detail users interact with.</p>
+        <div class="about-detail-label">Experience & Mobile Engineering</div>
+        <p>I have hands-on experience delivering iOS apps across different domains, including feature ownership, bug fixing, release cycles, and continuous improvements after launch. My work spans architecture planning, API integration, offline-first flows, testing, and performance tuning. I build with Swift, SwiftUI, UIKit, CoreData, CloudKit, and Firebase, and follow production-ready patterns like MVVM to keep codebases scalable and maintainable.</p>
       </div>
       <div class="about-detail reveal d3">
-        <div class="about-detail-label">Data Science</div>
-        <p>Currently deepening my expertise in Python, R, SQL, machine learning, and statistical analysis at UMBC. I build ML models with Scikit-Learn, TensorFlow, and PyTorch — from graduate admissions prediction to trading trend analysis.</p>
+        <div class="about-detail-label">Data Science & AI Integration</div>
+        <p>In parallel, I build practical data and ML solutions using Python, SQL, Scikit-Learn, TensorFlow, and PyTorch. My experience includes predictive modeling, anomaly detection, and analytics pipelines. I focus on bringing this intelligence into product workflows in ways that are clear and actionable, whether through recommendations, smarter prioritization, or insight-driven features that improve decision-making for users and teams.</p>
       </div>
     </div>
   </div>
