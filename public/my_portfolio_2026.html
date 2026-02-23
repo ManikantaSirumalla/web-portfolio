@@ -1665,7 +1665,7 @@ document.querySelectorAll('[data-project]').forEach(card => {
   card.addEventListener('click', () => {
     const projectId = card.getAttribute('data-project');
     if (projectId) {
-      window.location.href = `project-detail.html?project=${encodeURIComponent(projectId)}`;
+      window.location.href = `/project-detail?project=${encodeURIComponent(projectId)}`;
     }
   });
 });
