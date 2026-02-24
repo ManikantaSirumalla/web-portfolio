@@ -31,9 +31,20 @@
       border: 1px solid var(--border); border-radius: 999px; padding: 8px 14px;
       background: var(--card);
     }
+    .detail-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .detail-header .title {
+      margin: 0;
+      flex: 1 1 auto;
+    }
     .title {
       font-size: clamp(2rem, 5vw, 3.2rem);
-      margin: 0 0 8px;
       letter-spacing: -0.03em;
     }
     .tag {
@@ -106,13 +117,33 @@
       border-color: var(--accent);
       color: var(--accent);
     }
-    .screenshots-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(120px, 1fr));
-      gap: 10px;
-    }
-    .shot {
+    .app-store-badge-detail {
       display: block;
+      flex-shrink: 0;
+      width: 120px;
+      height: auto;
+    }
+    .app-store-badge-detail img { display: block; width: 100%; height: auto; }
+    .screenshots-section { margin-bottom: 24px; }
+    .screenshots-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .screenshots-grid::-webkit-scrollbar { height: 10px; }
+    .screenshots-grid::-webkit-scrollbar-track { background: var(--card); border-radius: 6px; }
+    .screenshots-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+    .shot {
+      flex: 0 0 auto;
+      width: 200px;
+      height: auto;
+      min-height: 320px;
+      scroll-snap-align: start;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -122,8 +153,25 @@
       display: block;
       width: 100%;
       height: auto;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
+      max-height: 400px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+    /* Laptop/desktop layout for Data Science project screenshots */
+    .screenshots-section.screenshots-laptop .shot {
+      width: 320px;
+      min-height: 0;
+      aspect-ratio: 16 / 10;
+    }
+    .screenshots-section.screenshots-laptop .shot img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      aspect-ratio: 16 / 10;
+      object-fit: contain;
+    }
+    @media (max-width: 860px) {
+      .screenshots-section.screenshots-laptop .shot { width: 260px; }
     }
     .not-found {
       margin-top: 40px;
@@ -134,7 +182,8 @@
     }
     @media (max-width: 860px) {
       .grid { grid-template-columns: 1fr; }
-      .screenshots-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+      .shot { width: 180px; min-height: 280px; }
+      .shot img { max-height: 360px; }
     }
   </style>
 </head>
@@ -274,7 +323,15 @@
         ],
         tech: ["Apache Spark", "Delta Lake", "Airflow", "Kafka", "MLflow", "XGBoost", "FastAPI", "Docker"],
         extra: "A complete data product story from ingestion to model serving to business-facing dashboards.",
-        metrics: [["129 GB", "Processed"], ["2.7M+", "Records"], ["<100ms", "API"]]
+        metrics: [["129 GB", "Processed"], ["2.7M+", "Records"], ["<100ms", "API"]],
+        links: [{ label: "GitHub", url: "https://github.com/ManikantaSirumalla/Job-Market-Analysis---The-Big-Data-Approach" }],
+        about: "Solo-built big data starter for tech job market analytics. Data lake (Raw/Bronze/Silver/Gold) with 129+ GB from GitHub Archive, Kaggle, StackOverflow, and BLS. Apache Spark for distributed processing, Delta Lake for versioned storage, Airflow for orchestration, Kafka for streaming, MLflow for experiment tracking. FastAPI service with health check and salary endpoint; XGBoost salary prediction and skill forecasting. Streamlit dashboards and sample ingest for GH Archive and BLS. Once the skeleton runs end-to-end, the design scales to full 20GB+ sources.",
+        screenshotHeading: "Job Market Analysis Platform Screenshots",
+        screenshots: [
+          "project-media/job-market/01.png",
+          "project-media/job-market/02.png",
+          "project-media/job-market/03.png"
+        ]
       },
       "expense-fraud-detection-system": {
         title: "Expense Fraud Detection System",
@@ -288,7 +345,19 @@
         ],
         tech: ["Python", "SQL Server", "Scikit-Learn", "SQLAlchemy", "Streamlit", "Plotly", "Docker"],
         extra: "Combines ML rigor with operations readiness, making model output useful for real teams.",
-        metrics: [["159", "Anomalies"], ["37", "High Risk"], ["227%", "Lift"]]
+        metrics: [["159", "Anomalies"], ["37", "High Risk"], ["227%", "Lift"]],
+        links: [{ label: "GitHub", url: "https://github.com/ManikantaSirumalla/Enterprise-fraud-detection-system" }],
+        about: "End-to-end expense fraud detection: ingests data from HR, credit card, and expense logs; cleans and loads into Microsoft SQL Server via ETL; engineers 35 features and trains an Isolation Forest anomaly model. Every claim gets a 0–1 fraud score; 1,597 claims, 467 employees, 15 departments — 159 anomalies (9.96%), 37 high-risk (2.32%). Validation shows higher scores for policy violations (~131%) and high amounts (~227%). Streamlit dashboard for overview, filters, department/vendor/trend analysis, and claim drill-down; export suspicious claims as CSV. Fraud score bands: 0–0.3 low, 0.3–0.6 medium, 0.6–0.8 high, 0.8–1.0 very high. Full docs: DOCUMENTATION.md, ETL_PROCESS_GUIDE.md, ML_MODEL_EXPLANATION.md in the repo.",
+        screenshotHeading: "Expense Fraud Detection System Screenshots",
+        screenshots: [
+          "project-media/expense-fraud/01.png",
+          "project-media/expense-fraud/02.png",
+          "project-media/expense-fraud/03.png",
+          "project-media/expense-fraud/04.png",
+          "project-media/expense-fraud/05.png",
+          "project-media/expense-fraud/06.png",
+          "project-media/expense-fraud/07.png"
+        ]
       },
       "customer-churn-prediction-system": {
         title: "Customer Churn Prediction System",
@@ -302,7 +371,9 @@
         ],
         tech: ["Python", "Scikit-Learn", "XGBoost", "Pandas", "SHAP", "Matplotlib", "Seaborn"],
         extra: "Strong demonstration of end-to-end ML workflow with practical explainability.",
-        metrics: [["7+", "Models"], ["40+", "Features"], ["SHAP", "XAI"]]
+        metrics: [["7+", "Models"], ["40+", "Features"], ["SHAP", "XAI"]],
+        links: [{ label: "GitHub", url: "https://github.com/ManikantaSirumalla/Telecom-Customer-Churn-Prediction-using-Machine-Learning" }],
+        about: "Telecom customer churn prediction and data-driven retention strategy. Pipeline: data preprocessing and feature engineering (9 new continuous features), train/test stratified split, StandardScaler, class_weight balanced; comparison of Lasso, Ridge, and Elastic Net Logistic Regression. Best model: Elastic Net (C=0.1, l1_ratio=0.5) with 86.9% recall on test (above 85% target), 47.7% precision, ROC-AUC 0.847. Elastic Net removed 10 of 39 features. Key drivers: loyalty_score (protective), InternetService_Fiber optic, revenue_velocity, PaymentMethod_Electronic check. Customer segmentation (e.g. Champions at Risk, Needs Attention, Loyal & Stable), ROI analysis (1632% ROI, ~$1.15M net benefit), retention playbook with segment-specific tactics and monitoring dashboard. Uses IBM Telco Customer Churn dataset."
       },
       "graduate-admissions-predictor": {
         title: "Graduate Admissions Predictor",
@@ -342,9 +413,20 @@
       root.innerHTML = '<div class="not-found">Project not found. Go back and choose a valid project card.</div>';
     } else {
       root.innerHTML = `
-        <h1 class="title">${p.title}</h1>
+        <div class="detail-header">
+          <h1 class="title">${p.title}</h1>
+          ${id === 'reptrack-pro' ? `<a class="app-store-badge-detail" href="https://apps.apple.com/us/app/reptrack-pro/id6751082017?uo=4" target="_blank" rel="noopener noreferrer"><img src="Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" alt="Download on the App Store"></a>` : ''}
+        </div>
         <div class="tag">${p.tag}</div>
         ${(p.links && p.links.length) ? `<div class="actions">${p.links.map(l => `<a class="action-link" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join('')}</div>` : ''}
+        ${(p.screenshots && p.screenshots.length) ? `
+        <section class="card screenshots-section ${['job-market-analysis-platform','expense-fraud-detection-system','customer-churn-prediction-system','graduate-admissions-predictor','trading-on-trends'].includes(id) ? 'screenshots-laptop' : ''}">
+          <h3>${p.screenshotHeading || 'Screenshots'}</h3>
+          <div class="screenshots-grid">
+            ${p.screenshots.map((url, i) => `<a class="shot" href="${url}" target="_blank" rel="noopener noreferrer"><img src="${url}" alt="${p.title} screenshot ${i + 1}" loading="lazy" /></a>`).join('')}
+          </div>
+        </section>
+        ` : ''}
         <div class="grid">
           <section class="card">
             <h3>What Is It?</h3>
@@ -363,18 +445,11 @@
             <p class="muted">${p.extra}</p>
           </section>
         </div>
+        ${p.about ? `<section class="card" style="margin-top:18px;"><h3>About this project</h3><p class="muted" style="white-space:pre-line">${String(p.about).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</p></section>` : ''}
         <section class="card" style="margin-top:18px;">
           <h3>Highlights</h3>
           <div class="metrics">${p.metrics.map(m => `<div class="metric"><div class="metric-value">${m[0]}</div><div class="muted" style="font-size:.8rem">${m[1]}</div></div>`).join('')}</div>
         </section>
-        ${(p.screenshots && p.screenshots.length) ? `
-        <section class="card" style="margin-top:18px;">
-          <h3>${p.screenshotHeading || 'Screenshots'}</h3>
-          <div class="screenshots-grid">
-            ${p.screenshots.map((url, i) => `<a class="shot" href="${url}" target="_blank" rel="noopener noreferrer"><img src="${url}" alt="${p.title} screenshot ${i + 1}" loading="lazy" /></a>`).join('')}
-          </div>
-        </section>
-        ` : ''}
       `;
     }
   </script>
