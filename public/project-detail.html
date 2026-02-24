@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="./">
   <title>Project Details</title>
   <style>
     :root {
@@ -190,7 +189,7 @@
 </head>
 <body>
   <div class="container">
-    <a class="back" href="index.html#work">← Back to Projects</a>
+    <a class="back" href="./index.html#work">← Back to Projects</a>
     <div id="content"></div>
   </div>
 
@@ -416,7 +415,7 @@
       root.innerHTML = `
         <div class="detail-header">
           <h1 class="title">${p.title}</h1>
-          ${id === 'reptrack-pro' ? `<a class="app-store-badge-detail" href="https://apps.apple.com/us/app/reptrack-pro/id6751082017?uo=4" target="_blank" rel="noopener noreferrer"><img src="Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" alt="Download on the App Store"></a>` : ''}
+          ${id === 'reptrack-pro' ? `<a class="app-store-badge-detail" href="https://apps.apple.com/us/app/reptrack-pro/id6751082017?uo=4" target="_blank" rel="noopener noreferrer"><img src="./Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" alt="Download on the App Store"></a>` : ''}
         </div>
         <div class="tag">${p.tag}</div>
         ${(p.links && p.links.length) ? `<div class="actions">${p.links.map(l => `<a class="action-link" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join('')}</div>` : ''}
@@ -424,7 +423,7 @@
         <section class="card screenshots-section ${['job-market-analysis-platform','expense-fraud-detection-system','customer-churn-prediction-system','graduate-admissions-predictor','trading-on-trends'].includes(id) ? 'screenshots-laptop' : ''}">
           <h3>${p.screenshotHeading || 'Screenshots'}</h3>
           <div class="screenshots-grid">
-            ${p.screenshots.map((url, i) => `<a class="shot" href="${url}" target="_blank" rel="noopener noreferrer"><img src="${url}" alt="${p.title} screenshot ${i + 1}" loading="lazy" /></a>`).join('')}
+            ${p.screenshots.map((url, i) => { const u = (url.startsWith('.') || url.startsWith('/') ? url : './' + url); return `<a class="shot" href="${u}" target="_blank" rel="noopener noreferrer"><img src="${u}" alt="${p.title} screenshot ${i + 1}" loading="lazy" /></a>`; }).join('')}
           </div>
         </section>
         ` : ''}
