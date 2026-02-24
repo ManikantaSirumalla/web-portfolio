@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="./">
 <title>Manikanta Sirumalla — iOS Developer & Data Science Enthusiast</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1170,8 +1171,8 @@ button { font-family: inherit; }
       <div class="hero-actions">
         <a href="#work" class="btn btn-filled">See my work</a>
         <a href="#contact" class="btn btn-outline">Get in touch</a>
-        <a href="/Manikanta_Sirumalla_iOS_Resume.pdf" class="btn btn-resume" download>iOS Resume</a>
-        <a href="/Manikanta_Sirumalla_Data_Science_ML_Resume.pdf" class="btn btn-resume" download>Data Science / ML Resume</a>
+        <a href="Manikanta_Sirumalla_iOS_Resume.pdf" class="btn btn-resume" download>iOS Resume</a>
+        <a href="Manikanta_Sirumalla_Data_Science_ML_Resume.pdf" class="btn btn-resume" download>Data Science / ML Resume</a>
       </div>
 
       <div class="hero-stats">
@@ -1195,7 +1196,7 @@ button { font-family: inherit; }
           <div class="hero-live-sub">Open to full-time roles · Remote/Onsite</div>
         </div>
         <div class="hero-deco-curve"></div>
-        <img src="/hero-photo-deploy.png" alt="Manikanta" onerror="if(this.src.indexOf('/public/hero-photo-deploy.png')===-1){this.src='/public/hero-photo-deploy.png';}">
+        <img src="hero-photo-deploy.png" alt="Manikanta" onerror="this.src='hero-photo-deploy.png'">
         <div class="float-badge float-badge-hello">Hello</div>
         <div class="float-badge float-badge-swift">Swift & SwiftUI</div>
         <div class="float-badge float-badge-ml">Data Science</div>
@@ -1693,7 +1694,7 @@ document.querySelectorAll('[data-project]').forEach(card => {
   card.addEventListener('click', () => {
     const projectId = card.getAttribute('data-project');
     if (projectId) {
-      window.location.href = `/project-detail?project=${encodeURIComponent(projectId)}`;
+      window.location.href = `project-detail.html?project=${encodeURIComponent(projectId)}`;
     }
   });
 });
