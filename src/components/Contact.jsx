@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import phoneIcon from '../assets/phone.png';
 import emailIcon from '../assets/email.png';
@@ -14,10 +14,10 @@ const Contact = ({ id }) => {
 
     emailjs
       .sendForm(
-        'service_4z8ixl9', // Replace with your EmailJS service ID
-        'template_zvmgk7g', // Replace with your EmailJS template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        'gz7Td505NsnUtZ0YJ' // Replace with your EmailJS public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {

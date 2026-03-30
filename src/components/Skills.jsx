@@ -75,16 +75,16 @@ const Skills = ({ id }) => {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center pt-20">Skills & Expertise</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {skillCategories.map((category, index) => (
-            <div 
-              key={index} 
+          {skillCategories.map((category) => (
+            <div
+              key={category.title}
               className="p-8 rounded-3xl shadow-lg bg-white"
             >
               <h3 className="text-xl font-bold mb-6 text-blue-500">{category.title}</h3>
               <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <span 
-                    key={skillIndex} 
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill}
                     className="px-4 py-2 rounded-lg text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
                   >
                     {skill}
@@ -102,8 +102,8 @@ const Skills = ({ id }) => {
             <div className="p-8 rounded-3xl shadow-lg bg-white">
               <h4 className="text-xl font-bold mb-6 text-blue-500">Technical Articles</h4>
               <ul className="space-y-4">
-                {articles.map((article, index) => (
-                  <li key={index}>
+                {articles.map((article) => (
+                  <li key={article.title}>
                     <a href={article.link} className="block p-4 rounded-xl hover:bg-blue-50 transition-colors" target="_blank" rel="noopener noreferrer">
                       <h5 className="font-medium mb-1">{article.title}</h5>
                       <p className="text-sm text-gray-600">{article.description}</p>
