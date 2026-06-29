@@ -6,11 +6,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Manikanta Sirumalla — iOS Developer & Data Scientist",
-    template: "%s — Manikanta Sirumalla",
+    default: "Manikanta Sirumalla | iOS Developer & Data Scientist",
+    template: "%s | Manikanta Sirumalla",
   },
   description:
-    "iOS engineer with 3+ years of production experience and a Master's in Data Science. Building polished native apps with on-device intelligence.",
+    "iOS engineer and UMBC M.S. Data Science candidate building SwiftUI, CoreML, LLM, and applied ML systems from research ideas into shipped products.",
   keywords: [
     "iOS developer",
     "SwiftUI",
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Manikanta Sirumalla — iOS Developer & Data Scientist",
+    title: "Manikanta Sirumalla | iOS Developer & Data Scientist",
     description:
-      "iOS engineer with 3+ years of production experience and a Master's in Data Science. Building polished native apps with on-device intelligence.",
+      "iOS engineer and UMBC M.S. Data Science candidate building SwiftUI, CoreML, LLM, and applied ML systems from research ideas into shipped products.",
     siteName: "Manikanta Sirumalla",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manikanta Sirumalla — iOS Developer & Data Scientist",
+    title: "Manikanta Sirumalla | iOS Developer & Data Scientist",
     description:
-      "iOS engineer with 3+ years of production experience and a Master's in Data Science.",
+      "iOS engineer and UMBC M.S. Data Science candidate building SwiftUI, CoreML, LLM, and applied ML systems.",
   },
 };
 

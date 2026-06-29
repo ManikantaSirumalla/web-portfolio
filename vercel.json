@@ -1,12 +1,1 @@
-{
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/my_portfolio_2026.html"
-    },
-    {
-      "source": "/project-detail",
-      "destination": "/project-detail.html"
-    }
-  ]
-}
+{}

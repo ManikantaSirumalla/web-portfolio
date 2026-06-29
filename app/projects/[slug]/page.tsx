@@ -13,7 +13,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const project = projectBySlug[params.slug];
   if (!project) return { title: "Project not found" };
   return {
-    title: `${project.title} — Manikanta Sirumalla`,
+    title: `${project.title} | Manikanta Sirumalla`,
     description: project.overview,
   };
 }
@@ -46,7 +46,7 @@ export default function ProjectDetailPage({ params }: { params: Params }) {
               aria-label="Download on the App Store"
             >
               <img
-                src="/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg"
+                src="/assets/badges/app-store.svg"
                 alt="Download on the App Store"
               />
             </a>

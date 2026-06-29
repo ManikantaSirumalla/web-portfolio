@@ -1,9 +1,10 @@
-import ScrollyCanvas from "@/components/ScrollyCanvas";
-import Overlay from "@/components/Overlay";
-import Projects from "@/components/Projects";
-import PortfolioDetails from "@/components/PortfolioDetails";
-import SiteNav from "@/components/SiteNav";
-import Achievements from "@/components/Achievements";
+import ScrollyCanvas from "@/components/hero/ScrollyCanvas";
+import Overlay from "@/components/hero/Overlay";
+import SiteNav from "@/components/layout/SiteNav";
+import Achievements from "@/components/sections/Achievements";
+import FeaturedMedia from "@/components/sections/FeaturedMedia";
+import Projects from "@/components/sections/Projects";
+import PortfolioDetails from "@/components/sections/PortfolioDetails";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Overlay />
       </div>
       <Achievements />
+      <FeaturedMedia />
       <Projects />
       <PortfolioDetails />
     </main>
