@@ -58,10 +58,10 @@ export default function Projects() {
           id="project-panel"
           role="tabpanel"
           aria-labelledby={tab === "ios" ? "tab-ios" : "tab-ml"}
-          className="project-list"
+          className="project-grid"
         >
           {activeProjects.map((project, index) => (
-            <ProjectRow key={project.slug} project={project} index={index} reduce={Boolean(reduce)} />
+            <ProjectCard key={project.slug} project={project} index={index} reduce={Boolean(reduce)} />
           ))}
         </div>
       </div>
@@ -69,7 +69,7 @@ export default function Projects() {
   );
 }
 
-function ProjectRow({
+function ProjectCard({
   project,
   index,
   reduce,
@@ -83,22 +83,32 @@ function ProjectRow({
 
   return (
     <motion.article
-      className="project-row"
-      initial={reduce ? false : { opacity: 0, transform: "translateY(14px)" }}
+      className="project-card"
+      initial={reduce ? false : { opacity: 0, transform: "translateY(12px)" }}
       animate={{ opacity: 1, transform: "none" }}
       transition={{ duration: 0.4, delay: reduce ? 0 : Math.min(index, 7) * 0.045, ease }}
     >
-      <Link href={`/projects/${project.slug}`} className="project-row-link">
-        <span className="project-index">{String(index + 1).padStart(2, "0")}</span>
+      <Link href={`/projects/${project.slug}`} className="project-card-link">
+        <div className="project-card-media">
+          {preview ? (
+            <Image src={preview} alt="" width={280} height={360} sizes="(max-width: 800px) 80vw, 240px" />
+          ) : project.appLogo ? (
+            <Image src={project.appLogo} alt="" width={96} height={96} className="project-logo" />
+          ) : (
+            <span className="project-mark" aria-hidden>
+              {project.domain === "ios" ? "iOS" : "ML"}
+            </span>
+          )}
+        </div>
         <div className="project-copy">
           <div className="project-tag">{project.tag}</div>
           <h3 className="project-title">
             {project.title}
-            <ArrowRight size={22} aria-hidden />
+            <ArrowRight size={18} aria-hidden />
           </h3>
           <p className="project-desc">{project.overview}</p>
           <div className="project-stack">
-            {project.tech.slice(0, 6).map((item) => (
+            {project.tech.slice(0, 4).map((item) => (
               <span key={item}>{item}</span>
             ))}
           </div>
@@ -114,31 +124,12 @@ function ProjectRow({
           )}
         </div>
       </Link>
-
-      <div className="project-aside">
-        {preview ? (
-          <div className="project-preview">
-            <Image src={preview} alt="" width={296} height={394} sizes="148px" />
-          </div>
-        ) : project.appLogo ? (
-          <Image src={project.appLogo} alt="" width={96} height={96} className="project-logo" />
-        ) : (
-          <span className="project-mark" aria-hidden>
-            {project.domain === "ios" ? "iOS" : "ML"}
-          </span>
-        )}
-        {appStoreUrl ? (
-          <a
-            className="project-store"
-            href={appStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image src="/assets/badges/app-store.svg" alt="" width={108} height={36} />
-            <span className="sr-only">Download {project.title} on the App Store</span>
-          </a>
-        ) : null}
-      </div>
+      {appStoreUrl ? (
+        <a className="project-store" href={appStoreUrl} target="_blank" rel="noopener noreferrer">
+          <Image src="/assets/badges/app-store.svg" alt="" width={108} height={36} />
+          <span className="sr-only">Download {project.title} on the App Store</span>
+        </a>
+      ) : null}
     </motion.article>
   );
 }

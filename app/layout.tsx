@@ -1,23 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Playfair_Display, Source_Serif_4 } from "next/font/google";
+import { Outfit, Source_Sans_3 } from "next/font/google";
 import SiteNav from "@/components/layout/SiteNav";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-outfit",
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-source",
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -56,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#09090B",
+  themeColor: "#F4F1EA",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -68,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${sourceSerif.variable} ${jetbrains.variable}`}>
-      <body className={sourceSerif.className}>
+    <html lang="en" className={`${outfit.variable} ${sourceSans.variable}`}>
+      <body className={sourceSans.className}>
         <a className="skip-link" href="#content">
           Skip to content
         </a>
