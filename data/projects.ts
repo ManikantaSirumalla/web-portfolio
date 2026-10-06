@@ -19,123 +19,111 @@ export type ProjectRecord = {
   about?: string;
   domain: "ios" | "ml";
   appLogo?: string;
+  featured?: boolean;
 };
 
 export const projects: ProjectRecord[] = [
   {
-    slug: "reptrack-pro",
-    title: "RepTrack Pro",
-    tag: "iOS Health & Fitness • Featured",
+    slug: "zealo",
+    title: "ZEALO",
+    tag: "Adaptive AI Fitness Intelligence · iPhone + Apple Watch",
     overview:
-      "AI-powered fitness and nutrition platform with a hybrid AI-deterministic architecture, HealthKit sync, Apple Watch support, Live Activities, and validated plan generation.",
+      "Privacy-first fitness intelligence platform spanning iPhone, Apple Watch, widgets, Live Activities, and Dynamic Island, with 1,300+ organic downloads and 1st Place at CBIC 2026.",
     description:
-      "Production iOS fitness platform built as sole developer, combining deterministic training logic with constrained LLM generation, structured validation, Vision OCR imports, HealthKit sync, Apple Watch companion features, widgets, Live Activities, and StoreKit 2 subscriptions.",
+      "ZEALO (formerly RepTrack Pro) pairs a hybrid deterministic + LLM coaching system with HealthKit-based recovery and readiness models. Structured outputs, validation gates, on-device intent routing, and offline fallbacks keep the AI coach private and reliable.",
     features: [
-      "Hybrid AI-deterministic architecture with deterministic training splits, progression, and metabolic math",
-      "4-stage AI generation pipeline with Groq Llama 3.3 70B, OpenAI failover, provider routing, and plan validation",
-      "Structured 1,651-exercise database across 8 categories, 15 muscle groups, 21 equipment types, and 4 difficulty tiers",
-      "Literature-gated PlanValidator enforcing MEV/MAV/MRV, RIR caps, recovery limits, and energy-availability floors",
-      "Vision OCR and parsers for PDF, DOCX, CSV, XLSX, and image-based trainer program imports",
-      "Apple Watch companion, Live Activities, widgets, iCloud sync, PDF export, and StoreKit 2 subscriptions",
+      "Hybrid deterministic + LLM system with structured outputs, validation gates, evidence-backed constraints, on-device intent routing, and offline fallbacks, cutting AI-coach execution from up to 9 model calls to a 4-call budget per question",
+      "4- to 12-week adaptive training-plan engine with automated progression, constraint validation, retry-on-violation, and deterministic fallback",
+      "Plan generation validated through an 82/82 live-AI run, a ~3,945-case test matrix, adversarial testing, and 6 XCUITest flows",
+      "HealthKit-based Recovery, Training Readiness, Strain, and Stress systems on personalized baselines, plus adaptive nutrition, menstrual-cycle-aware guidance, and Weekly Intelligence",
+      "Calorie model rebuilt on 2024 Compendium MET values, correcting a 6-hour idle-workout estimate from 1,260 kcal to 53 kcal",
+      "Apple Watch companion with live workout execution, heart-rate zones, motion-based rep detection, and effort scoring",
+      "WHOOP, Oura, Fitbit, and Garmin signals normalized into one intelligence layer for readiness, training, recovery, and recommendations",
+      "StoreKit 2, iCloud sync, Firebase Analytics, Realtime Database, Crashlytics, and App Check for subscriptions, sync, telemetry, diagnostics, and integrity",
     ],
-    tech: ["SwiftUI", "SwiftData", "HealthKit", "CoreML", "Vision", "WatchKit", "StoreKit 2", "Groq", "OpenAI"],
+    tech: ["SwiftUI", "WatchKit", "HealthKit", "WidgetKit", "Live Activities", "StoreKit 2", "LLM integration", "Firebase"],
     extra:
-      "RepTrack Pro focuses on real production fitness use-cases: tracking fidelity, recovery-aware streak logic, and polished day-to-day UX from onboarding to post-workout reporting.",
+      "First-author manuscript in preparation: “ZEALO: A Hybrid AI-Deterministic Architecture for Personalized Fitness and Nutrition Plan Generation on iOS.”",
     metrics: [
+      { value: "1,300+", label: "Organic downloads" },
       { value: "1st", label: "CBIC 2026" },
-      { value: "1,651", label: "Exercises" },
-      { value: "139", label: "Tests" },
+      { value: "82/82", label: "Live-AI run" },
+      { value: "9 → 4", label: "Model calls" },
     ],
     links: [
-      { label: "App Store", url: "https://apps.apple.com/us/app/reptrack-pro/id6751082017?uo=4" },
-      { label: "Support Center", url: "https://manikantasirumalla.github.io/reptrackpro-legal/support.html" },
+      { label: "App Store", url: "https://apps.apple.com/us/app/id6751082017" },
+      { label: "zealofitness.com", url: "https://zealofitness.com" },
     ],
-    screenshotHeading: "RepTrack Pro Screenshots",
+    screenshotHeading: "ZEALO screens",
     screenshots: [
-      "/assets/projects/reptrack/01.png",
-      "/assets/projects/reptrack/02.png",
-      "/assets/projects/reptrack/03.png",
-      "/assets/projects/reptrack/04.png",
-      "/assets/projects/reptrack/05.png",
-      "/assets/projects/reptrack/06.png",
-      "/assets/projects/reptrack/07.png",
-      "/assets/projects/reptrack/08.png",
-      "/assets/projects/reptrack/09.png",
-      "/assets/projects/reptrack/10.png",
+      "/assets/projects/zealo/02.png",
+      "/assets/projects/zealo/03.png",
+      "/assets/projects/zealo/04.png",
+      "/assets/projects/zealo/05.png",
+      "/assets/projects/zealo/06.png",
+      "/assets/projects/zealo/07.png",
+      "/assets/projects/zealo/08.png",
+      "/assets/projects/zealo/09.png",
     ],
     domain: "ios",
-    appLogo: "/assets/projects/reptrack/icon.png",
+    appLogo: "/assets/projects/zealo/icon.png",
+    featured: true,
   },
   {
     slug: "tech-signal",
     title: "Tech Signal",
-    tag: "SwiftUI • Developer Feed • Privacy-first",
+    tag: "Developer intelligence feed · SwiftUI",
     overview:
-      "Native SwiftUI iOS app that brings tech news, developer discussions, trending repos, AI/ML reads, and tech events from 30+ sources into one clean place, with no subscriptions, no ads, no tracking, and zero third-party dependencies.",
+      "Aggregates 30+ developer sources with cache-first loading, personalized ranking, trend detection, and on-device summarization, with zero third-party runtime dependencies.",
     description:
-      "A unified feed for developers that brings together Hacker News, Reddit, GitHub, RSS, supply-chain updates, Salesforce/CRM verticals, and more. Cache-first loading keeps the feed fast, while a smart layer adds dwell-time ranking, trending signals, mute and boost controls, inline discussions, related reading, and changelog diffs without third-party SDKs.",
+      "A unified feed for developers built on first-party networking only. Apple’s Natural Language framework summarizes articles on device, and native Apple integrations handle discovery and tips without ad networks or analytics SDKs.",
     features: [
-      "Core feed from Hacker News, Reddit, GitHub, and RSS with cache-first, full-bleed card layout",
-      "Smart ranking with dwell-time signals, trending detection, mute/boost, threads, related reading, and changelog diffs",
-      "On-device article summaries using Apple NaturalLanguage, so users can tap to summarize while everything stays fully local",
-      "Tech Events tab combining Confs.tech, developers.events, and Eventbrite with filter chips and CFP banners",
-      "GitHub release tracker for watched repositories with SwiftData persistence",
-      "Developer tool status dashboard monitoring 13 services via Atlassian Statuspage",
-      "Weekly digest compiled on-device from bookmarks, releases, events, and cached feed items",
-      "Morning briefing widget, Spotlight/Siri support, deep links, custom URL scheme, and a StoreKit 2 tip jar with three consumable tiers",
-      "Explore tab with five discovery sections and a segmented source picker",
+      "30+ sources including Hacker News, Reddit, GitHub, and RSS with cache-first loading",
+      "Personalized ranking with dwell-time signals, trend detection, and mute and boost controls",
+      "On-device article summaries with Apple’s Natural Language framework",
+      "GitHub release tracking with SwiftData persistence and an on-device weekly digest",
+      "Morning briefing widget, Spotlight and Siri support, deep links, and a StoreKit 2 tip jar",
     ],
-    tech: [
-      "SwiftUI",
-      "SwiftData",
-      "NaturalLanguage",
-      "StoreKit 2",
-      "WidgetKit",
-      "App Intents",
-      "URL Schemes",
-      "RSS & REST",
-    ],
-    extra:
-      "Tech Signal is structured around a privacy-first architecture: first-party networking only, on-device intelligence for summaries and digests, and native Apple integrations for discovery and monetization without ad networks or analytics SDKs.",
+    tech: ["SwiftUI", "SwiftData", "NaturalLanguage", "WidgetKit", "App Intents", "StoreKit 2"],
+    extra: "Zero third-party runtime dependencies: networking, intelligence, and monetization are all first-party.",
     metrics: [
       { value: "30+", label: "Sources" },
-      { value: "Local", label: "Summaries" },
-      { value: "0", label: "Third-party SDKs" },
+      { value: "On-device", label: "Summaries" },
+      { value: "0", label: "Third-party deps" },
     ],
     links: [
-      { label: "App Store", url: "https://apps.apple.com/us/app/tech-signal/id6759932010?uo=4" },
+      { label: "App Store", url: "https://apps.apple.com/us/app/tech-signal/id6759932010" },
       { label: "Privacy Policy", url: "https://manikantasirumalla.github.io/Tech-signal-legal/privacy.html" },
     ],
     domain: "ios",
     appLogo: "/assets/projects/tech-signal/icon.png",
+    featured: true,
   },
   {
     slug: "dermafusion",
     title: "DermaFusion",
-    tag: "iOS + On-Device AI",
+    tag: "On-device skin-lesion classification · Research prototype",
     overview:
-      "On-device 8-class skin lesion classification app built around an EfficientNet-B4 model, CoreML deployment, and interpretable scan-to-assessment workflows.",
+      "Native SwiftUI app that runs a two-model EfficientNet-B4 ensemble as FP16 Core ML packages, so photos are analyzed entirely on iPhone with no cloud, sign-in, or analytics.",
     description:
-      "M.S. capstone project that trained an EfficientNet-B4 skin-lesion classifier across 61,694 dermoscopy images, used leakage-safe patient-grouped splits, and exported the model to CoreML for on-device iOS inference with Grad-CAM-style interpretability.",
+      "Camera capture and photo import, non-skin image rejection, Grad-CAM heatmap overlays, a malignant-risk gauge, and PDF report export through the share sheet. Designed for educational research, not as a medical device.",
     features: [
-      "Trained EfficientNet-B4 with PyTorch, timm, AMP mixed precision, AdamW, and cosine annealing",
-      "Unified ISIC 2018, 2019, 2020, and PAD-UFES-20 data with leakage-safe patient-grouped evaluation",
-      "Handled severe class imbalance with weighted sampling and class-balanced focal loss",
-      "Exported a deployment-ready CoreML package through TorchScript tracing and coremltools",
-      "Select exact body location with interactive 3D body model tapping",
-      "Toggle Grad-CAM overlays for interpretable diagnosis support",
-      "Review confidence, class probabilities, metadata, and lesion education in one workflow",
+      "Two-model EfficientNet-B4 ensemble deployed as FP16 Core ML packages (34 MB each), fully on device",
+      "Camera capture, photo import, non-skin image rejection, Grad-CAM overlays, a malignant-risk gauge, and PDF report export",
+      "Trained on 61,694 dermoscopic and smartphone images unified from ISIC 2018/2019/2020 and PAD-UFES-20",
+      "Patient-grouped splits with zero patient or lesion overlap, Shades-of-Gray color constancy, and DullRazor hair removal",
+      "Class-balanced focal loss, MixUp, EMA, Dirichlet-tuned ensemble weights, and per-class thresholds",
+      "0.830 malignant-vs-benign AUROC and 95.4% top-3 accuracy on a 5,279-image held-out test set, verified through automated clinical-readiness gates",
     ],
-    tech: ["SwiftUI", "CoreML", "PyTorch", "timm", "TorchScript", "coremltools", "Grad-CAM"],
-    extra:
-      "DermaFusion emphasizes explainability and clinical-style flow design, keeping prediction confidence and lesion education visible at each decision step.",
+    tech: ["SwiftUI", "Core ML", "Vision", "PDFKit", "PyTorch", "EfficientNet-B4", "Grad-CAM"],
+    extra: "Designed for educational research, not as a medical device.",
     metrics: [
-      { value: "8", label: "Classes" },
-      { value: "61,694", label: "Images" },
-      { value: "0.806", label: "Balanced Acc." },
+      { value: "0.830", label: "AUROC" },
+      { value: "95.4%", label: "Top-3 accuracy" },
+      { value: "61,694", label: "Training images" },
     ],
-    links: [{ label: "Project Repo", url: "https://github.com/ManikantaSirumalla/DermaFusion" }],
-    screenshotHeading: "DermaFusion Screenshots",
+    links: [{ label: "GitHub", url: "https://github.com/ManikantaSirumalla/DermaFusion" }],
+    screenshotHeading: "DermaFusion screens",
     screenshots: [
       "/assets/projects/dermafusion/01.png",
       "/assets/projects/dermafusion/02.png",
@@ -148,6 +136,7 @@ export const projects: ProjectRecord[] = [
     ],
     domain: "ios",
     appLogo: "/assets/projects/dermafusion/logo.png",
+    featured: true,
   },
   {
     slug: "newswave",
@@ -319,8 +308,8 @@ export const projects: ProjectRecord[] = [
   },
 ];
 
-export const iosProjects = projects.filter((project) => project.domain === "ios");
-export const mlProjects = projects.filter((project) => project.domain === "ml");
+export const featuredProjects = projects.filter((project) => project.featured);
+export const otherProjects = projects.filter((project) => !project.featured);
 
 export function appStoreUrlForProject(project: ProjectRecord): string | undefined {
   return project.links?.find((link) => link.label === "App Store")?.url;

@@ -1,56 +1,58 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Source_Sans_3 } from "next/font/google";
-import SiteNav from "@/components/layout/SiteNav";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import Spotlight from "@/components/portfolio/Spotlight";
 import "./globals.css";
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-source",
+  variable: "--font-mono",
   display: "swap",
 });
+
+const description =
+  "iOS Engineer with 5+ years shipping native apps in Swift, SwiftUI, and UIKit. Founder of AutoClosure LLC and builder of ZEALO, an Adaptive AI Fitness Intelligence platform for iPhone and Apple Watch.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sirumallamanikanta.com"),
   title: {
-    default: "Manikanta Sirumalla | iOS Developer & Data Scientist",
-    template: "%s | Manikanta Sirumalla",
+    default: "Manikanta Sirumalla · iOS Engineer",
+    template: "%s · Manikanta Sirumalla",
   },
-  description:
-    "iOS engineer and UMBC M.S. Data Science candidate building SwiftUI, CoreML, LLM, and applied ML systems from research ideas into shipped products.",
+  description,
   keywords: [
-    "iOS developer",
-    "SwiftUI",
+    "iOS Engineer",
     "Swift",
-    "Data Science",
-    "Machine Learning",
+    "SwiftUI",
+    "Apple Watch",
+    "HealthKit",
+    "Applied AI",
+    "ZEALO",
     "Manikanta Sirumalla",
-    "Portfolio",
   ],
   authors: [{ name: "Manikanta Sirumalla" }],
   creator: "Manikanta Sirumalla",
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Manikanta Sirumalla | iOS Developer & Data Scientist",
-    description:
-      "iOS engineer and UMBC M.S. Data Science candidate building SwiftUI, CoreML, LLM, and applied ML systems from research ideas into shipped products.",
+    title: "Manikanta Sirumalla · iOS Engineer",
+    description,
     siteName: "Manikanta Sirumalla",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manikanta Sirumalla | iOS Developer & Data Scientist",
-    description:
-      "iOS engineer and UMBC M.S. Data Science candidate building SwiftUI, CoreML, LLM, and applied ML systems.",
+    title: "Manikanta Sirumalla · iOS Engineer",
+    description,
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F4F1EA",
+  themeColor: "#0A0C10",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -62,12 +64,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${sourceSans.variable}`}>
-      <body className={sourceSans.className}>
-        <a className="skip-link" href="#content">
+    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+      <body>
+        <a
+          href="#content"
+          className="fixed left-4 top-4 z-50 -translate-y-24 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-ink focus:translate-y-0"
+        >
           Skip to content
         </a>
-        <SiteNav />
+        <Spotlight />
         {children}
       </body>
     </html>

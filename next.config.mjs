@@ -7,6 +7,9 @@ const nextConfig = {
       { protocol: "https", hostname: "img.youtube.com" },
     ],
   },
+  async redirects() {
+    return [{ source: "/projects/reptrack-pro", destination: "/projects/zealo", permanent: true }];
+  },
 };
 
 export default nextConfig;
