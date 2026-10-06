@@ -15,6 +15,7 @@ import {
   profile,
   recommendations,
   skills,
+  stage,
   stats,
   summary,
   writing,
@@ -430,6 +431,47 @@ export default function HomePage() {
                   </p>
                 </Reveal>
               ))}
+          </div>
+        </section>
+
+        <section id="stage" aria-labelledby="stage-title" className="border-t border-hairline bg-white py-28 md:py-36">
+          <div className="page">
+            <Reveal>
+              <p className="eyebrow text-graphite">Speaking and programs</p>
+              <h2 id="stage-title" className="headline mt-2">Out in the community.</h2>
+            </Reveal>
+            <ul className="mt-14 divide-y divide-hairline border-y border-hairline">
+              {stage.map((event) => (
+                <Reveal
+                  as="li"
+                  key={event.title}
+                  className="grid gap-6 py-10 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-10 md:py-14"
+                >
+                  <div>
+                    <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-graphite">
+                      {event.kicker} · {event.period}
+                    </p>
+                    <h3 className="mt-2 text-[28px] font-semibold leading-[1.15] tracking-headline md:text-[32px]">{event.title}</h3>
+                    <p className="mt-3 text-[17px] leading-[1.55] text-ink">{event.detail}</p>
+                  </div>
+                  <div className="min-w-0">
+                    <Carousel label={`${event.title} photos`} itemClassName="w-auto" inset>
+                      {event.images.map((image) => (
+                        <Image
+                          key={image.src}
+                          src={image.src}
+                          alt={image.alt}
+                          width={image.width}
+                          height={image.height}
+                          sizes="(min-width: 768px) 720px, 90vw"
+                          className="h-auto max-h-[300px] w-auto max-w-[calc(100vw-48px)] rounded-[18px] md:h-[400px] md:max-h-none md:max-w-none"
+                        />
+                      ))}
+                    </Carousel>
+                  </div>
+                </Reveal>
+              ))}
+            </ul>
           </div>
         </section>
 

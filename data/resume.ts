@@ -162,6 +162,59 @@ export const honors = [
   },
 ];
 
+export const stage = [
+  {
+    kicker: "Top 5 finalist",
+    title: "ATA × IdeaBazz",
+    period: "2026",
+    detail:
+      "Pitched ZEALO at IdeaBazz, the startup pitch competition at the American Telugu Association (ATA) Convention, and placed in the top 5. Recognized on the main convention stage.",
+    images: [
+      { src: "/assets/achievements/ata/01.jpg", alt: "Manikanta receiving a top 5 certificate on stage at the ATA Convention", width: 1022, height: 1600 },
+      { src: "/assets/achievements/ata/02.jpg", alt: "Manikanta pitching ZEALO with a microphone at ATA × IdeaBazz", width: 900, height: 1600 },
+    ],
+  },
+  {
+    kicker: "Cohort member",
+    title: "UMBC Launchpad",
+    period: "Summer 2026",
+    detail:
+      "Selected for the summer 2026 cohort of UMBC Launchpad, the startup program of the Alex. Brown Center for Entrepreneurship & Innovation. Built ZEALO alongside fellow student founders and presented the venture to the cohort and program mentors.",
+    images: [
+      { src: "/assets/achievements/launchpad/06.jpg", alt: "The UMBC Launchpad cohort in front of the Alex. Brown Center for Entrepreneurship & Innovation slide", width: 1320, height: 720 },
+      { src: "/assets/achievements/launchpad/01.jpg", alt: "Manikanta in front of the bwtech@UMBC Research & Technology Park banner", width: 921, height: 1600 },
+      { src: "/assets/achievements/launchpad/03.jpg", alt: "Manikanta presenting ZEALO to the Launchpad cohort", width: 1109, height: 1600 },
+      { src: "/assets/achievements/launchpad/04.jpg", alt: "Manikanta gesturing toward the audience while presenting", width: 1124, height: 1600 },
+      { src: "/assets/achievements/launchpad/02.jpg", alt: "Three moments from Manikanta's Launchpad presentation", width: 911, height: 1600 },
+      { src: "/assets/achievements/launchpad/05.jpg", alt: "Manikanta with Launchpad founders and program staff", width: 1205, height: 706 },
+    ],
+  },
+  {
+    kicker: "Founder presentation",
+    title: "1 Million Cups Baltimore",
+    period: "2026",
+    detail:
+      "Presented ZEALO at 1 Million Cups Baltimore, the Kauffman Foundation’s founder forum, followed by open Q&A with Baltimore’s entrepreneur community.",
+    images: [
+      { src: "/assets/achievements/1-million-cups/01.jpg", alt: "Manikanta beside the 1 Million Cups banner", width: 974, height: 1525 },
+      { src: "/assets/achievements/1-million-cups/02.jpg", alt: "Manikanta presenting ZEALO at 1 Million Cups Baltimore", width: 900, height: 1600 },
+      { src: "/assets/achievements/1-million-cups/03.jpg", alt: "Manikanta explaining ZEALO to the 1 Million Cups audience", width: 900, height: 1600 },
+    ],
+  },
+  {
+    kicker: "Panelist",
+    title: "UMBC Fall ’26 Orientation",
+    period: "Fall 2026",
+    detail:
+      "Spoke as a student panelist at UMBC’s Fall 2026 orientation, sharing my experience as a graduate student and founder with incoming students.",
+    images: [
+      { src: "/assets/achievements/orientation-panel/01.jpg", alt: "Manikanta seated with fellow student panelists at UMBC orientation", width: 1413, height: 941 },
+      { src: "/assets/achievements/orientation-panel/02.jpg", alt: "Manikanta speaking into a microphone on the orientation panel", width: 1392, height: 928 },
+      { src: "/assets/achievements/orientation-panel/03.jpg", alt: "Manikanta answering a question beside another panelist", width: 1086, height: 1448 },
+    ],
+  },
+];
+
 export const press = [
   {
     source: "UMBC Stories",

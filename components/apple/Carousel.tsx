@@ -7,9 +7,16 @@ type CarouselProps = {
   children: ReactNode;
   tone?: "light" | "dark";
   itemClassName?: string;
+  inset?: boolean;
 };
 
-export default function Carousel({ label, children, tone = "light", itemClassName = "w-[85%] sm:w-[420px]" }: CarouselProps) {
+export default function Carousel({
+  label,
+  children,
+  tone = "light",
+  itemClassName = "w-[85%] sm:w-[420px]",
+  inset = false,
+}: CarouselProps) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
@@ -36,10 +43,12 @@ export default function Carousel({ label, children, tone = "light", itemClassNam
   const scrollBy = (direction: 1 | -1) => {
     const track = trackRef.current;
     if (!track) return;
-    const item = track.querySelector("li");
-    const step = item ? item.getBoundingClientRect().width + 20 : track.clientWidth * 0.8;
+    const start = track.getBoundingClientRect().left + (parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0);
+    const offsets = Array.from(track.children, (item) => item.getBoundingClientRect().left - start);
+    const offset =
+      direction === 1 ? offsets.find((value) => value > 4) : offsets.filter((value) => value < -4).pop();
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    track.scrollBy({ left: step * direction, behavior: reduce ? "auto" : "smooth" });
+    track.scrollBy({ left: offset ?? track.clientWidth * 0.8 * direction, behavior: reduce ? "auto" : "smooth" });
   };
 
   const button =
@@ -51,13 +60,13 @@ export default function Carousel({ label, children, tone = "light", itemClassNam
     <div role="region" aria-roledescription="carousel" aria-label={label}>
       <ul
         ref={trackRef}
-        className="carousel-track no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2"
+        className={`${inset ? "items-center gap-3" : "carousel-track gap-5"} no-scrollbar flex snap-x snap-mandatory overflow-x-auto pb-2`}
       >
         {Children.map(children, (child) => (
           <li className={`shrink-0 snap-start ${itemClassName}`}>{child}</li>
         ))}
       </ul>
-      <div className="page mt-6 flex justify-end gap-3">
+      <div className={`${inset ? "mt-4" : "page mt-6"} flex justify-end gap-3 ${canPrev || canNext ? "" : "hidden"}`}>
         <button
           type="button"
           onClick={() => scrollBy(-1)}
