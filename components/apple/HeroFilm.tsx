@@ -166,8 +166,8 @@ function KeyedPortrait({
             : "relative h-full w-auto max-w-none object-contain"
         }
         src="/media/talking-hero.mp4"
+        autoPlay
         muted
-        loop
         playsInline
         preload="auto"
         aria-label={`Introduction from ${profile.name}`}
@@ -198,15 +198,18 @@ export default function HeroFilm() {
     const onPause = () => setPlaying(false);
     video.addEventListener("play", onPlay);
     video.addEventListener("pause", onPause);
+    video.addEventListener("ended", onPause);
+    setPlaying(!video.paused && !video.ended);
     return () => {
       video.removeEventListener("play", onPlay);
       video.removeEventListener("pause", onPause);
+      video.removeEventListener("ended", onPause);
     };
   }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reduce) return;
+    if (!video) return;
     const start = () => {
       video.muted = true;
       video.play().catch(() => undefined);
@@ -214,7 +217,7 @@ export default function HeroFilm() {
     if (video.readyState >= 2) start();
     else video.addEventListener("canplay", start, { once: true });
     return () => video.removeEventListener("canplay", start);
-  }, [reduce]);
+  }, []);
 
   useEffect(() => {
     const unmute = (event: PointerEvent) => {
@@ -280,15 +283,15 @@ export default function HeroFilm() {
           onClick={toggle}
           aria-pressed={playing}
           aria-label={playing ? "Pause introduction" : "Play introduction"}
-          className="fixed right-16 top-1 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#2c3d86] text-white shadow-[0_10px_24px_-12px_rgba(28,40,110,0.9)] transition-colors hover:bg-[#243472] md:right-5"
+          className="fixed right-16 top-1 z-50 flex h-11 w-11 items-center justify-center text-[#2c3d86] transition-colors hover:text-[#1b2860] md:right-5"
         >
           {playing ? (
-            <span aria-hidden className="flex items-center gap-[3px]">
-              <span className="block h-3 w-[2.5px] rounded-full bg-white" />
-              <span className="block h-3 w-[2.5px] rounded-full bg-white" />
+            <span aria-hidden className="flex items-center gap-[4px]">
+              <span className="block h-4 w-[3px] rounded-full bg-current" />
+              <span className="block h-4 w-[3px] rounded-full bg-current" />
             </span>
           ) : (
-            <span aria-hidden className="ml-0.5 block h-0 w-0 border-y-[6px] border-l-[9px] border-y-transparent border-l-white" />
+            <span aria-hidden className="ml-0.5 block h-0 w-0 border-y-[8px] border-l-[12px] border-y-transparent border-l-current" />
           )}
         </button>
       ) : null}
