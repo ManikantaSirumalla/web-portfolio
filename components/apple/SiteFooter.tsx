@@ -8,7 +8,7 @@ const columns = [
       { label: "ZEALO", href: "/projects/zealo" },
       { label: "Tech Signal", href: "/projects/tech-signal" },
       { label: "DermaFusion", href: "/projects/dermafusion" },
-      { label: "All case studies", href: "/#work" },
+      { label: "All projects", href: "/#work" },
     ],
   },
   {
@@ -17,7 +17,7 @@ const columns = [
       { label: "Experience", href: "/#experience" },
       { label: "Skills and education", href: "/#specs" },
       { label: "Honors", href: "/#honors" },
-      { label: "Résumé (PDF)", href: profile.resume },
+      { label: "Resume (PDF)", href: profile.resume },
     ],
   },
   {

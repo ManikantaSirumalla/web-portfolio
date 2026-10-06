@@ -71,11 +71,20 @@ const zealoTiles = [
 ];
 
 const closerLook = [
-  "/assets/projects/zealo/05.png",
-  "/assets/projects/zealo/06.png",
-  "/assets/projects/zealo/07.png",
-  "/assets/projects/zealo/08.png",
-  "/assets/projects/zealo/09.png",
+  { src: "/assets/projects/zealo/03-stress.png", alt: "ZEALO stress screen" },
+  { src: "/assets/projects/zealo/05-session.png", alt: "ZEALO live workout session screen" },
+  { src: "/assets/projects/zealo/06-sets.png", alt: "ZEALO set logging screen" },
+  { src: "/assets/projects/zealo/07-macros.png", alt: "ZEALO macros screen" },
+  { src: "/assets/projects/zealo/08-strain.png", alt: "ZEALO strain screen" },
+  { src: "/assets/projects/zealo/09-zones.png", alt: "ZEALO heart-rate zones screen" },
+  { src: "/assets/projects/zealo/10-history.png", alt: "ZEALO workout history screen" },
+  { src: "/assets/projects/zealo/11-records.png", alt: "ZEALO personal records screen" },
+  { src: "/assets/projects/zealo/12-cycle.png", alt: "ZEALO cycle-aware guidance screen" },
+  { src: "/assets/projects/zealo/13-scan.png", alt: "ZEALO food scan screen" },
+  { src: "/assets/projects/zealo/14-coach.png", alt: "ZEALO AI coach screen" },
+  { src: "/assets/projects/zealo/15-workouts.png", alt: "ZEALO workouts screen" },
+  { src: "/assets/projects/zealo/16-recovery.png", alt: "ZEALO recovery screen" },
+  { src: "/assets/projects/zealo/17-health.png", alt: "ZEALO health screen" },
 ];
 
 function Chevron() {
@@ -88,11 +97,11 @@ export default function HomePage() {
 
   return (
     <>
-      <GlobalNav />
+      <GlobalNav appearance="hero" />
       <main id="content">
         <HeroFilm />
 
-        <section aria-label="Summary" className="bg-white py-28 md:py-40">
+        <section id="about" aria-label="Summary" className="bg-white py-28 md:py-40">
           <div className="page">
             <ScrollLitText
               text={summary}
@@ -137,7 +146,7 @@ export default function HomePage() {
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
                 <Link href="/projects/zealo" className="link-chevron-dark">
-                  Read the case study <Chevron />
+                  View the project <Chevron />
                 </Link>
                 {zealoStore ? (
                   <a href={zealoStore} target="_blank" rel="noopener noreferrer" className="link-chevron-dark">
@@ -185,13 +194,13 @@ export default function HomePage() {
             </div>
             <div className="mt-10">
               <Carousel label="ZEALO screens" tone="dark" itemClassName="w-[64%] sm:w-[300px]">
-                {closerLook.map((src, index) => (
-                  <div key={src} className="overflow-hidden rounded-[28px] ring-1 ring-white/10">
+                {closerLook.map((shot) => (
+                  <div key={shot.src} className="overflow-hidden rounded-[28px] ring-1 ring-white/10">
                     <Image
-                      src={src}
-                      alt={`ZEALO screen ${index + 5}`}
-                      width={1260}
-                      height={2736}
+                      src={shot.src}
+                      alt={shot.alt}
+                      width={1284}
+                      height={2778}
                       sizes="300px"
                       className="h-auto w-full"
                     />
@@ -264,7 +273,7 @@ export default function HomePage() {
             </div>
 
             <Reveal className="mt-20">
-              <h3 className="text-[28px] font-semibold tracking-headline md:text-[32px]">More case studies</h3>
+              <h3 className="text-[28px] font-semibold tracking-headline md:text-[32px]">More projects</h3>
             </Reveal>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {otherProjects.map((project, index) => (
@@ -427,27 +436,26 @@ export default function HomePage() {
         <section aria-labelledby="voices-title" className="bg-mist py-28 md:py-36">
           <div className="page">
             <Reveal>
-              <p className="eyebrow text-graphite">Press and recommendations</p>
+              <p className="eyebrow text-graphite">Press and testimonials</p>
               <h2 id="voices-title" className="headline mt-2">In their words.</h2>
             </Reveal>
           </div>
-          <div className="mt-12">
-            <Carousel label="Press and recommendations" itemClassName="w-[86%] sm:w-[400px]">
-              {[
-                ...press.map((item) => (
+          <div className="page mt-12">
+            <ul className="grid gap-5 md:grid-cols-2">
+              {press.map((item, index) => (
+                <Reveal as="li" key={item.href} delay={index * 0.08}>
                   <a
-                    key={item.href}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group tile flex h-full min-h-[520px] flex-col bg-white"
+                    className="group tile flex h-full flex-col bg-white"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden">
+                    <div className="relative aspect-[16/10] overflow-hidden">
                       <Image
                         src={item.image}
                         alt={item.imageAlt}
                         fill
-                        sizes="400px"
+                        sizes="(min-width: 768px) 534px, 100vw"
                         className="object-cover transition-transform duration-[1.2s] ease-apple group-hover:scale-[1.04]"
                       />
                     </div>
@@ -460,20 +468,28 @@ export default function HomePage() {
                       </span>
                     </div>
                   </a>
-                )),
-                ...recommendations.map((item) => (
-                  <figure key={item.author} className="tile flex h-full min-h-[520px] flex-col justify-between bg-white p-8 md:p-10">
-                    <blockquote className="text-[21px] font-semibold leading-[1.35] tracking-headline">
+                </Reveal>
+              ))}
+            </ul>
+
+            <Reveal className="mt-20">
+              <h3 className="text-[28px] font-semibold tracking-headline md:text-[32px]">Testimonials</h3>
+            </Reveal>
+            <ul className="mt-8 grid gap-5 md:grid-cols-3">
+              {recommendations.map((item, index) => (
+                <Reveal as="li" key={item.author} delay={index * 0.08}>
+                  <figure className="tile flex h-full flex-col justify-between bg-white p-8">
+                    <blockquote className="text-[17px] font-medium leading-[1.5] tracking-headline text-ink">
                       “{item.quote}”
                     </blockquote>
-                    <figcaption className="mt-8">
+                    <figcaption className="mt-8 border-t border-hairline pt-5">
                       <p className="text-[17px] font-semibold">{item.author}</p>
-                      <p className="text-[15px] text-graphite">{item.role}</p>
+                      <p className="text-[14px] text-graphite">{item.role}</p>
                     </figcaption>
                   </figure>
-                )),
-              ]}
-            </Carousel>
+                </Reveal>
+              ))}
+            </ul>
           </div>
 
           <div className="page mt-20">

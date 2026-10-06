@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -6,9 +8,18 @@ import GlobalNav from "@/components/apple/GlobalNav";
 import SiteFooter from "@/components/apple/SiteFooter";
 import Reveal from "@/components/apple/Reveal";
 import Carousel from "@/components/apple/Carousel";
+import ProjectReadme from "@/components/apple/ProjectReadme";
 import { projects, projectBySlug, appStoreUrlForProject } from "@/data/projects";
 
 type Params = { slug: string };
+
+function readReadme(slug: string): string | null {
+  try {
+    return readFileSync(path.join(process.cwd(), "content", "readmes", `${slug}.md`), "utf8");
+  } catch {
+    return null;
+  }
+}
 
 export function generateStaticParams(): Params[] {
   return projects.map((project) => ({ slug: project.slug }));
@@ -32,6 +43,7 @@ export default function ProjectDetailPage({ params }: { params: Params }) {
   const isPhone = project.domain === "ios";
   const index = projects.findIndex((item) => item.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
+  const readme = readReadme(project.slug);
 
   return (
     <>
@@ -156,6 +168,20 @@ export default function ProjectDetailPage({ params }: { params: Params }) {
             ) : null}
           </div>
         </section>
+
+        {readme ? (
+          <section aria-labelledby="readme-title" className="border-t border-hairline bg-white py-28 md:py-36">
+            <div className="page">
+              <Reveal>
+                <p className="eyebrow text-graphite">Project details</p>
+                <h2 id="readme-title" className="headline mt-2">In depth.</h2>
+              </Reveal>
+              <div className="mt-14">
+                <ProjectReadme markdown={readme} />
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section aria-labelledby="stack-title" className="bg-mist py-28 md:py-36">
           <div className="page">

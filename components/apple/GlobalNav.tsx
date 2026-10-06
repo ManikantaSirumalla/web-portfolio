@@ -7,17 +7,27 @@ import { profile } from "@/data/resume";
 import { useReducedMotionSafe } from "@/components/apple/useReducedMotionSafe";
 
 const links = [
-  { href: "/#zealo", label: "ZEALO" },
+  { href: "/#about", label: "About" },
+  { href: "/#specs", label: "Skills" },
   { href: "/#work", label: "Work" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#specs", label: "Skills" },
-  { href: "/#honors", label: "Honors" },
+  { href: "/#honors", label: "Achievements" },
   { href: "/#contact", label: "Contact" },
 ];
 
-export default function GlobalNav() {
+export default function GlobalNav({ appearance = "dark" }: { appearance?: "dark" | "hero" }) {
   const [open, setOpen] = useState(false);
+  const [solid, setSolid] = useState(appearance === "dark");
   const reduce = useReducedMotionSafe();
+  const light = appearance === "hero" && !solid;
+
+  useEffect(() => {
+    if (appearance !== "hero") return;
+    const onScroll = () => setSolid(window.scrollY > window.innerHeight - 64);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [appearance]);
 
   useEffect(() => {
     if (!open) return;
@@ -36,23 +46,31 @@ export default function GlobalNav() {
     <header className="fixed inset-x-0 top-0 z-40">
       <nav
         aria-label="Global"
-        className="relative z-10 border-b border-white/[0.06] bg-[rgba(22,22,23,0.8)] backdrop-blur-xl backdrop-saturate-[1.8]"
+        className={`relative z-10 border-b transition-colors duration-300 ${
+          light
+            ? "border-transparent bg-transparent"
+            : "border-white/[0.06] bg-[rgba(22,22,23,0.8)] backdrop-blur-xl backdrop-saturate-[1.8]"
+        }`}
       >
-        <div className="mx-auto flex h-12 max-w-[1024px] items-center justify-between px-4 md:px-6">
+        <div className="mx-auto flex h-12 max-w-[1180px] items-center justify-between px-5 md:px-8">
           <Link
             href="/"
-            className="flex min-h-[44px] items-center text-[14px] font-semibold tracking-headline text-white/90 transition-colors hover:text-white"
+            className={`flex min-h-[44px] items-center text-[14px] font-medium tracking-headline transition-colors ${
+              light ? "text-[#3a4150] hover:text-[#1c2430]" : "font-semibold text-white/90 hover:text-white"
+            }`}
             onClick={() => setOpen(false)}
           >
             Manikanta Sirumalla
           </Link>
 
-          <ul className="hidden items-center gap-8 md:flex">
+          <ul className="hidden items-center gap-7 md:flex">
             {links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="flex min-h-[44px] items-center text-[12px] tracking-[-0.01em] text-white/80 transition-colors hover:text-white"
+                  className={`flex min-h-[44px] items-center tracking-[-0.01em] transition-colors ${
+                    light ? "text-[13px] text-[#5c6572] hover:text-[#1c2430]" : "text-[12px] text-white/80 hover:text-white"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -61,16 +79,20 @@ export default function GlobalNav() {
           </ul>
 
           <div className="flex items-center gap-2">
-            <a
-              href={profile.resume}
-              download={profile.resumeFileName}
-              className="hidden min-h-[28px] items-center rounded-full bg-action px-3 text-[12px] text-white transition-colors hover:bg-action-hover sm:inline-flex"
-            >
-              Résumé
-            </a>
+            {light ? (
+              <span aria-hidden className="hidden h-11 w-11 md:block" />
+            ) : (
+              <a
+                href={profile.resume}
+                download={profile.resumeFileName}
+                className="hidden min-h-[28px] items-center rounded-full bg-action px-3 text-[12px] text-white transition-colors hover:bg-action-hover sm:inline-flex"
+              >
+                Resume
+              </a>
+            )}
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center text-white/90 md:hidden"
+              className={`flex h-11 w-11 items-center justify-center md:hidden ${light ? "text-[#1c2430]" : "text-white/90"}`}
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
@@ -127,7 +149,7 @@ export default function GlobalNav() {
                   className="btn-pill"
                   onClick={() => setOpen(false)}
                 >
-                  Download résumé
+                  Download resume
                 </a>
               </li>
             </ul>

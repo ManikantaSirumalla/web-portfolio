@@ -6,9 +6,9 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useReducedMotionSafe } from "@/components/apple/useReducedMotionSafe";
 
 const screens = [
-  { src: "/assets/projects/zealo/02.png", alt: "ZEALO training readiness screen" },
-  { src: "/assets/projects/zealo/03.png", alt: "ZEALO AI-generated workout plan screen" },
-  { src: "/assets/projects/zealo/04.png", alt: "ZEALO nutrition guidance screen" },
+  { src: "/assets/projects/zealo/02-readiness.png", alt: "ZEALO training readiness screen" },
+  { src: "/assets/projects/zealo/01-signals.png", alt: "ZEALO AI weekly recommendation screen" },
+  { src: "/assets/projects/zealo/04-plans.png", alt: "ZEALO adaptive training plan screen" },
 ];
 
 export default function ZealoShowcase() {
@@ -43,8 +43,8 @@ export default function ZealoShowcase() {
           <Image
             src={screen.src}
             alt={screen.alt}
-            width={1260}
-            height={2736}
+            width={1284}
+            height={2778}
             sizes="(min-width: 980px) 340px, 40vw"
             className="h-auto w-full"
             priority={index === 1}
