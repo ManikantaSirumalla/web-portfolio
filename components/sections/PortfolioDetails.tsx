@@ -1,7 +1,10 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useLayoutEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowSquareOut } from "@phosphor-icons/react";
+import Reveal from "@/components/motion/Reveal";
+
+type FieldError = { id: string; message: string };
 
 const experiences = [
   {
@@ -125,8 +128,19 @@ const initialsFromName = (name: string) =>
     .toUpperCase();
 
 export default function PortfolioDetails() {
-  const [errors, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState<FieldError[]>([]);
   const [status, setStatus] = useState("");
+  const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const shouldFocusErrors = useRef(false);
+  const fieldError = (id: string) => errors.find((error) => error.id === id);
+
+  useLayoutEffect(() => {
+    if (!shouldFocusErrors.current || errors.length === 0) return;
+    shouldFocusErrors.current = false;
+    const summary = errorSummaryRef.current;
+    summary?.focus({ preventScroll: false });
+    summary?.classList.add("is-focused");
+  }, [errors]);
 
   const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -136,18 +150,20 @@ export default function PortfolioDetails() {
     const name = (data.get("name") || "").toString().trim();
     const email = (data.get("email") || "").toString().trim();
     const message = (data.get("message") || "").toString().trim();
-    const nextErrors: string[] = [];
+    const nextErrors: FieldError[] = [];
 
-    if (!name) nextErrors.push("Enter your name.");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) nextErrors.push("Enter a valid email address.");
-    if (message.length < 8) nextErrors.push("Enter a message of at least a short sentence.");
+    if (!name) nextErrors.push({ id: "contact-name", message: "Enter your name." });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      nextErrors.push({ id: "contact-email", message: "Enter a valid email address." });
+    }
+    if (message.length < 8) {
+      nextErrors.push({ id: "contact-message", message: "Enter a message of at least a short sentence." });
+    }
 
     setErrors(nextErrors);
     if (nextErrors.length > 0) {
       setStatus("");
-      window.requestAnimationFrame(() => {
-        document.getElementById("contact-errors")?.focus();
-      });
+      shouldFocusErrors.current = true;
       return;
     }
 
@@ -161,6 +177,7 @@ export default function PortfolioDetails() {
     <>
       <section className="section" id="about">
         <div className="section-inner">
+          <Reveal>
           <p className="section-eyebrow">05 — About</p>
           <p className="about-statement">
             I build at the intersection of iOS engineering, machine learning, and product systems.
@@ -170,6 +187,7 @@ export default function PortfolioDetails() {
             3.95 GPA, focusing on ML systems, model evaluation, and applied AI that can move from
             notebooks into real products.
           </p>
+          </Reveal>
           <div className="about-details">
             <article className="about-detail">
               <div className="about-detail-label">Experience & Mobile Engineering</div>
@@ -199,11 +217,13 @@ export default function PortfolioDetails() {
 
       <section className="section section-muted" id="skills">
         <div className="section-inner">
+          <Reveal>
           <p className="section-eyebrow">06 — Practice</p>
           <h2 className="section-heading">
             Two domains.
             <span> One engineer.</span>
           </h2>
+          </Reveal>
           <div className="skills-grid">
             <article className="skill-card">
               <span className="skill-icon" aria-hidden>
@@ -277,11 +297,13 @@ export default function PortfolioDetails() {
 
       <section className="section" id="experience">
         <div className="section-inner">
+          <Reveal>
           <p className="section-eyebrow">07 — Experience</p>
           <h2 className="section-heading">
             Where the work landed.
             <span> School, studios, and product teams.</span>
           </h2>
+          </Reveal>
           <div className="exp-list">
             {experiences.map((item) => (
               <article key={item.company + item.period} className="exp-entry">
@@ -304,13 +326,15 @@ export default function PortfolioDetails() {
         </div>
       </section>
 
-      <section className="section" id="testimonials">
+      <section className="section section-deferred" id="testimonials">
         <div className="section-inner">
+          <Reveal>
           <p className="section-eyebrow">08 — Recommendations</p>
           <h2 className="section-heading">
             Notes from people I&apos;ve worked with.
             <span> Leads, faculty, and collaborators.</span>
           </h2>
+          </Reveal>
           <div className="testimonials-grid">
             <article className="testimonial-featured">
               <div>
@@ -343,13 +367,15 @@ export default function PortfolioDetails() {
         </div>
       </section>
 
-      <section className="section section-muted" id="writing">
+      <section className="section section-muted section-deferred" id="writing">
         <div className="section-inner">
+          <Reveal>
           <p className="section-eyebrow">09 — Writing</p>
           <h2 className="section-heading">
             Notes on Medium.
             <span> iOS engineering, written down.</span>
           </h2>
+          </Reveal>
           <div className="blog-list">
             {publications.map((post) => (
               <a
@@ -374,6 +400,7 @@ export default function PortfolioDetails() {
 
       <section className="contact-section" id="contact">
         <div className="section-inner">
+          <Reveal>
           <p className="section-eyebrow">10 — Contact</p>
           <h2 className="contact-heading">
             Let&apos;s build something precise.
@@ -382,6 +409,7 @@ export default function PortfolioDetails() {
             Looking for an iOS developer with a data science edge? I&apos;m in Baltimore, MD and
             available for full-time or remote work.
           </p>
+          </Reveal>
           <div className="contact-actions">
             <a href="mailto:connect@sirumallamanikanta.com" className="btn btn-filled">
               connect@sirumallamanikanta.com
@@ -392,30 +420,46 @@ export default function PortfolioDetails() {
           </div>
           <form onSubmit={handleContactSubmit} className="contact-form" noValidate>
             {errors.length > 0 ? (
-              <div id="contact-errors" className="form-alert" role="alert" tabIndex={-1}>
+              <div
+                ref={errorSummaryRef}
+                id="contact-errors"
+                className="form-alert"
+                role="alert"
+                tabIndex={-1}
+              >
                 <p>The message was not sent. Fix these fields:</p>
                 <ul>
                   {errors.map((error) => (
-                    <li key={error}>{error}</li>
+                    <li key={error.id}>
+                      <a href={`#${error.id}`}>{error.message}</a>
+                    </li>
                   ))}
                 </ul>
               </div>
             ) : null}
             <div className="contact-form-grid">
               <div className="field">
-                <label htmlFor="contact-name">Name</label>
+                <label htmlFor="contact-name">
+                  Name <span aria-hidden="true">*</span>
+                </label>
                 <input
                   id="contact-name"
                   type="text"
                   name="name"
                   autoComplete="name"
                   required
-                  aria-invalid={errors.some((error) => error.includes("name"))}
+                  aria-invalid={Boolean(fieldError("contact-name"))}
+                  aria-describedby={fieldError("contact-name") ? "contact-name-error" : undefined}
                   className="contact-input"
                 />
+                {fieldError("contact-name") ? (
+                  <p id="contact-name-error" className="field-error">{fieldError("contact-name")?.message}</p>
+                ) : null}
               </div>
               <div className="field">
-                <label htmlFor="contact-email">Email</label>
+                <label htmlFor="contact-email">
+                  Email <span aria-hidden="true">*</span>
+                </label>
                 <input
                   id="contact-email"
                   type="email"
@@ -423,20 +467,30 @@ export default function PortfolioDetails() {
                   autoComplete="email"
                   inputMode="email"
                   required
-                  aria-invalid={errors.some((error) => error.includes("email"))}
+                  aria-invalid={Boolean(fieldError("contact-email"))}
+                  aria-describedby={fieldError("contact-email") ? "contact-email-error" : undefined}
                   className="contact-input"
                 />
+                {fieldError("contact-email") ? (
+                  <p id="contact-email-error" className="field-error">{fieldError("contact-email")?.message}</p>
+                ) : null}
               </div>
             </div>
             <div className="field">
-              <label htmlFor="contact-message">Message</label>
+              <label htmlFor="contact-message">
+                Message <span aria-hidden="true">*</span>
+              </label>
               <textarea
                 id="contact-message"
                 name="message"
                 required
-                aria-invalid={errors.some((error) => error.includes("message"))}
+                aria-invalid={Boolean(fieldError("contact-message"))}
+                aria-describedby={fieldError("contact-message") ? "contact-message-error" : undefined}
                 className="contact-textarea"
               />
+              {fieldError("contact-message") ? (
+                <p id="contact-message-error" className="field-error">{fieldError("contact-message")?.message}</p>
+              ) : null}
             </div>
             <button type="submit" className="btn btn-filled contact-submit">
               Send message

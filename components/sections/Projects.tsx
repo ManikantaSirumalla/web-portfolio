@@ -4,23 +4,30 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "@phosphor-icons/react";
+import { motion, useReducedMotion } from "motion/react";
 import { iosProjects, mlProjects, appStoreUrlForProject, type ProjectRecord } from "@/data/projects";
+import Reveal from "@/components/motion/Reveal";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Projects() {
   const [tab, setTab] = useState<"ios" | "ml">("ios");
+  const reduce = useReducedMotion();
   const activeProjects = useMemo(() => (tab === "ios" ? iosProjects : mlProjects), [tab]);
 
   return (
     <section className="section" id="work">
       <div className="section-inner">
-        <p className="section-eyebrow">01 — Selected work</p>
-        <h2 className="section-heading">
-          Shipped products
-          <span> and the systems behind them.</span>
-        </h2>
-        <p className="section-desc">
-          Filter by practice. Every card opens a case study. App Store badges open the store without leaving the index.
-        </p>
+        <Reveal>
+          <p className="section-eyebrow">01 — Selected work</p>
+          <h2 className="section-heading">
+            Shipped products
+            <span> and the systems behind them.</span>
+          </h2>
+          <p className="section-desc">
+            Filter by practice. Every card opens a case study. App Store badges open the store without leaving the index.
+          </p>
+        </Reveal>
 
         <div className="project-tabs" role="tablist" aria-label="Project domains">
           <button
@@ -54,7 +61,7 @@ export default function Projects() {
           className="project-list"
         >
           {activeProjects.map((project, index) => (
-            <ProjectRow key={project.slug} project={project} index={index} />
+            <ProjectRow key={project.slug} project={project} index={index} reduce={Boolean(reduce)} />
           ))}
         </div>
       </div>
@@ -62,11 +69,25 @@ export default function Projects() {
   );
 }
 
-function ProjectRow({ project, index }: { project: ProjectRecord; index: number }) {
+function ProjectRow({
+  project,
+  index,
+  reduce,
+}: {
+  project: ProjectRecord;
+  index: number;
+  reduce: boolean;
+}) {
   const appStoreUrl = appStoreUrlForProject(project);
+  const preview = project.screenshots?.[0];
 
   return (
-    <article className="project-row">
+    <motion.article
+      className="project-row"
+      initial={reduce ? false : { opacity: 0, transform: "translateY(14px)" }}
+      animate={{ opacity: 1, transform: "none" }}
+      transition={{ duration: 0.4, delay: reduce ? 0 : Math.min(index, 7) * 0.045, ease }}
+    >
       <Link href={`/projects/${project.slug}`} className="project-row-link">
         <span className="project-index">{String(index + 1).padStart(2, "0")}</span>
         <div className="project-copy">
@@ -95,14 +116,12 @@ function ProjectRow({ project, index }: { project: ProjectRecord; index: number 
       </Link>
 
       <div className="project-aside">
-        {project.appLogo ? (
-          <Image
-            src={project.appLogo}
-            alt=""
-            width={96}
-            height={96}
-            className="project-logo"
-          />
+        {preview ? (
+          <div className="project-preview">
+            <Image src={preview} alt="" width={296} height={394} sizes="148px" />
+          </div>
+        ) : project.appLogo ? (
+          <Image src={project.appLogo} alt="" width={96} height={96} className="project-logo" />
         ) : (
           <span className="project-mark" aria-hidden>
             {project.domain === "ios" ? "iOS" : "ML"}
@@ -120,6 +139,6 @@ function ProjectRow({ project, index }: { project: ProjectRecord; index: number 
           </a>
         ) : null}
       </div>
-    </article>
+    </motion.article>
   );
 }

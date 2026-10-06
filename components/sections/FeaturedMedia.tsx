@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowSquareOut, Play } from "@phosphor-icons/react/ssr";
+import Reveal from "@/components/motion/Reveal";
 
 const mediaFeatures = [
   {
@@ -29,11 +30,13 @@ export default function FeaturedMedia() {
   return (
     <section className="section section-muted" id="media">
       <div className="section-inner">
-        <p className="section-eyebrow">04 — Media</p>
-        <h2 className="section-heading">
-          Stories outside the case studies.
-          <span> Press, interviews, and recognition.</span>
-        </h2>
+        <Reveal>
+          <p className="section-eyebrow">04 — Media</p>
+          <h2 className="section-heading">
+            Stories outside the case studies.
+            <span> Press, interviews, and recognition.</span>
+          </h2>
+        </Reveal>
 
         <div className="media-feature-grid">
           {mediaFeatures.map((item) => (

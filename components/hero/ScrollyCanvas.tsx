@@ -28,7 +28,7 @@ export default function ScrollyCanvas({ videoSrc = HERO_VIDEO_SRC }: { videoSrc?
 
   const washOpacity = useTransform(scrollYProgress, [0, 0.08, 0.88, 1], [0.42, 0.55, 0.55, 0.72]);
   const hintOpacity = useTransform(scrollYProgress, [0, 0.04, 0.1], [1, 0.7, 0]);
-  const progress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1.06, 1]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -128,20 +128,20 @@ export default function ScrollyCanvas({ videoSrc = HERO_VIDEO_SRC }: { videoSrc?
   return (
     <div ref={containerRef} className="hero-scroll">
       <div className="hero-sticky">
-        <video
+        <motion.video
           ref={videoRef}
-          className="hero-video"
+          className="hero-video hero-video-live"
+          style={{ scale: videoScale }}
           muted
           playsInline
           disablePictureInPicture
-          preload="auto"
+          preload="metadata"
           aria-hidden
         >
           <source src={videoSrc} type="video/mp4" />
-        </video>
+        </motion.video>
         <div className="hero-vignette" />
         <motion.div className="hero-wash" style={{ opacity: washOpacity }} />
-        <motion.div className="hero-progress" style={{ scaleX: progress }} />
         <motion.div style={{ opacity: hintOpacity }}>
           <div className="hero-scroll-hint" aria-hidden>
             <span>Scroll</span>

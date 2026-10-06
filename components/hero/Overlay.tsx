@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef } from "react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
 
 const chapters = [
   {
@@ -63,24 +63,47 @@ export default function Overlay() {
     offset: ["start start", "end end"],
   });
 
-  const ranges = [
-    [0, 0.07, 0.13],
-    [0.11, 0.19, 0.25],
-    [0.23, 0.31, 0.37],
-    [0.35, 0.43, 0.49],
-    [0.47, 0.55, 0.61],
-    [0.59, 0.69, 0.77],
-    [0.75, 0.85, 0.95],
-  ] as const;
+  const progress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const panelRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  const opacity1 = useTransform(scrollYProgress, [...ranges[0]], [1, 1, 0]);
-  const opacity2 = useTransform(scrollYProgress, [...ranges[1]], [0, 1, 0]);
-  const opacity3 = useTransform(scrollYProgress, [...ranges[2]], [0, 1, 0]);
-  const opacity4 = useTransform(scrollYProgress, [...ranges[3]], [0, 1, 0]);
-  const opacity5 = useTransform(scrollYProgress, [...ranges[4]], [0, 1, 0]);
-  const opacity6 = useTransform(scrollYProgress, [...ranges[5]], [0, 1, 0]);
-  const opacity7 = useTransform(scrollYProgress, [...ranges[6]], [0, 1, 1]);
-  const opacities = [opacity1, opacity2, opacity3, opacity4, opacity5, opacity6, opacity7];
+  const applyChapterOpacity = (latest: number) => {
+    const count = chapters.length;
+    const span = 1 / count;
+    const fade = span * 0.28;
+
+    for (let index = 0; index < count; index += 1) {
+      const node = panelRefs.current[index];
+      if (!node) continue;
+
+      const start = index * span;
+      const end = start + span;
+      let opacity = 0;
+
+      if (latest <= start) {
+        opacity = index === 0 ? 1 : 0;
+      } else if (latest < start + fade) {
+        opacity = index === 0 ? 1 : (latest - start) / fade;
+      } else if (latest < end - fade) {
+        opacity = 1;
+      } else if (latest < end) {
+        opacity = index === count - 1 ? 1 : 1 - (latest - (end - fade)) / fade;
+      } else {
+        opacity = index === count - 1 ? 1 : 0;
+      }
+
+      const hidden = opacity < 0.02;
+      node.style.opacity = hidden ? "0" : opacity.toFixed(3);
+      node.style.visibility = hidden ? "hidden" : "visible";
+      node.toggleAttribute("inert", hidden);
+      node.setAttribute("aria-hidden", hidden ? "true" : "false");
+    }
+  };
+
+  useMotionValueEvent(scrollYProgress, "change", applyChapterOpacity);
+
+  useEffect(() => {
+    applyChapterOpacity(scrollYProgress.get());
+  }, [scrollYProgress]);
 
   if (reduce) {
     return (
@@ -106,10 +129,15 @@ export default function Overlay() {
     <div ref={containerRef} className="hero-overlay">
       <div className="hero-sticky">
         {chapters.map((chapter, index) => (
-          <motion.div
+          <div
             key={chapter.title}
-            style={{ opacity: opacities[index] }}
+            ref={(node) => {
+              panelRefs.current[index] = node;
+            }}
+            style={{ opacity: index === 0 ? 1 : 0, visibility: index === 0 ? "visible" : "hidden" }}
             className={`hero-panel hero-panel-${chapter.align}`}
+            aria-hidden={index === 0 ? undefined : true}
+            inert={index === 0 ? undefined : true}
           >
             <p className="hero-kicker">
               {String(index + 1).padStart(2, "0")} / 07 · {chapter.kicker}
@@ -120,8 +148,11 @@ export default function Overlay() {
               <h2 className="hero-heading">{chapter.title}</h2>
             )}
             {"cta" in chapter && chapter.cta ? <ChapterCtas /> : null}
-          </motion.div>
+          </div>
         ))}
+        <div className="hero-progress-track" aria-hidden>
+          <motion.div className="hero-progress" style={{ scaleX: progress }} />
+        </div>
       </div>
     </div>
   );

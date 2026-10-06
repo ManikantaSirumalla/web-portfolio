@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Playfair_Display, Source_Serif_4 } from "next/font/google";
 import SiteNav from "@/components/layout/SiteNav";
 import "./globals.css";
 
-const archivo = Archivo({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-playfair",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-space",
+  variable: "--font-source",
   display: "swap",
 });
 
@@ -68,8 +68,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}>
-      <body>
+    <html lang="en" className={`${playfair.variable} ${sourceSerif.variable} ${jetbrains.variable}`}>
+      <body className={sourceSerif.className}>
         <a className="skip-link" href="#content">
           Skip to content
         </a>

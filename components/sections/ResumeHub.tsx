@@ -1,3 +1,5 @@
+import Reveal from "@/components/motion/Reveal";
+
 const resumes = [
   {
     title: "iOS Developer Resume",
@@ -19,14 +21,16 @@ export default function ResumeHub() {
   return (
     <section className="section section-muted" id="resume">
       <div className="section-inner">
-        <p className="section-eyebrow">02 — Resume</p>
-        <h2 className="section-heading">
-          Two versions.
-          <span> Pick the one that matches the role.</span>
-        </h2>
-        <p className="section-desc">
-          Focused resumes for recruiters and hiring teams, matched to the work on this site.
-        </p>
+        <Reveal>
+          <p className="section-eyebrow">02 — Resume</p>
+          <h2 className="section-heading">
+            Two versions.
+            <span> Pick the one that matches the role.</span>
+          </h2>
+          <p className="section-desc">
+            Focused resumes for recruiters and hiring teams, matched to the work on this site.
+          </p>
+        </Reveal>
 
         <div className="resume-grid">
           {resumes.map((resume) => (

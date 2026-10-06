@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "@/components/motion/Reveal";
 
 const wwdcThumbs = ["img-6317.jpg", "img-6944.jpg", "img-6477.jpg"];
 
@@ -6,11 +7,13 @@ export default function Achievements() {
   return (
     <section className="section" id="highlights">
       <div className="section-inner">
-        <p className="section-eyebrow">03 — Highlights</p>
-        <h2 className="section-heading">
-          Milestones from the work.
-          <span> Competitions, invitations, and the rooms they opened.</span>
-        </h2>
+        <Reveal>
+          <p className="section-eyebrow">03 — Highlights</p>
+          <h2 className="section-heading">
+            Milestones from the work.
+            <span> Competitions, invitations, and the rooms they opened.</span>
+          </h2>
+        </Reveal>
 
         <div className="achievement-grid">
           <article className="achievement-card">

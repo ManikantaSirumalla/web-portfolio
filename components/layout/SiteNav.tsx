@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { usePathname } from "next/navigation";
 import { List, X } from "@phosphor-icons/react";
 
 const links = [
@@ -16,7 +17,33 @@ const links = [
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const pathname = usePathname();
   const menuId = useId();
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActive("");
+      return;
+    }
+
+    const sections = links
+      .map((link) => document.getElementById(link.href.split("#")[1] ?? ""))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActive(visible.target.id);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0.15, 0.4] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -39,11 +66,14 @@ export default function SiteNav() {
           Manikanta Sirumalla
         </a>
         <div className="site-nav-links">
-          {links.map((link) => (
-            <a key={link.href} href={link.href}>
-              {link.label}
-            </a>
-          ))}
+          {links.map((link) => {
+            const id = link.href.split("#")[1];
+            return (
+              <a key={link.href} href={link.href} aria-current={active === id ? "true" : undefined}>
+                {link.label}
+              </a>
+            );
+          })}
         </div>
         <a className="site-nav-cta" href="/#contact">
           Hire
