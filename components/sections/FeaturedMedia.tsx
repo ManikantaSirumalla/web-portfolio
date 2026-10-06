@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { ArrowSquareOut, Play } from "@phosphor-icons/react/ssr";
+
 const mediaFeatures = [
   {
     source: "UMBC Stories",
@@ -5,9 +8,9 @@ const mediaFeatures = [
     description:
       "UMBC shared the story behind my journey as an international data science graduate student, solo founder, and creator of RepTrack Pro.",
     href: "https://umbc.edu/stories/meet-a-retriever-manikanta-sirumalla-entrepreneur/",
-    action: "Read Article",
+    action: "Read article",
     image: "https://umbc.edu/wp-content/uploads/2026/06/IMG_4668-Manikanta-Sirumalla-1200x981.jpeg",
-    imageAlt: "UMBC feature article cover",
+    imageAlt: "Manikanta Sirumalla in the UMBC feature photograph",
   },
   {
     source: "YouTube Podcast",
@@ -15,22 +18,21 @@ const mediaFeatures = [
     description:
       "A podcast conversation about building as a student founder, turning an iOS product into a venture, and what I learned along the way.",
     href: "https://www.youtube.com/watch?v=N1Cx6gILh2c",
-    action: "Watch Podcast",
+    action: "Watch podcast",
     image: "https://img.youtube.com/vi/N1Cx6gILh2c/hqdefault.jpg",
-    imageAlt: "YouTube podcast thumbnail",
+    imageAlt: "Thumbnail for the founder journey podcast",
     isVideo: true,
   },
 ];
 
 export default function FeaturedMedia() {
   return (
-    <section className="section" id="media" style={{ background: "var(--bg-elevated)" }}>
+    <section className="section section-muted" id="media">
       <div className="section-inner">
-        <p className="section-eyebrow">Featured Media</p>
+        <p className="section-eyebrow">04 — Media</p>
         <h2 className="section-heading">
-          Stories beyond the portfolio.
-          <br />
-          <span className="section-heading-muted">Press, interviews, and recognition.</span>
+          Stories outside the case studies.
+          <span> Press, interviews, and recognition.</span>
         </h2>
 
         <div className="media-feature-grid">
@@ -41,15 +43,14 @@ export default function FeaturedMedia() {
               target="_blank"
               rel="noreferrer"
               className="media-feature-card"
-              aria-label={`${item.action}: ${item.title}`}
             >
               <div className="media-feature-cover">
-                <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" />
-                {item.isVideo && (
+                <Image src={item.image} alt={item.imageAlt} fill sizes="(max-width: 900px) 100vw, 50vw" />
+                {item.isVideo ? (
                   <span className="media-feature-play" aria-hidden>
-                    ▶
+                    <Play size={18} weight="fill" />
                   </span>
-                )}
+                ) : null}
               </div>
               <div className="media-feature-body">
                 <div className="media-feature-source">{item.source}</div>
@@ -58,7 +59,7 @@ export default function FeaturedMedia() {
               </div>
               <span className="media-feature-action">
                 {item.action}
-                <span aria-hidden>→</span>
+                <ArrowSquareOut size={16} aria-hidden />
               </span>
             </a>
           ))}

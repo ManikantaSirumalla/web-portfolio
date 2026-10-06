@@ -1,111 +1,127 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+
+const chapters = [
+  {
+    title: "Hey, I'm Manikanta.",
+    kicker: "iOS Developer · 3+ years",
+    align: "center",
+  },
+  {
+    title: "Production apps, with on-device algorithms.",
+    kicker: "Live on the App Store",
+    align: "start",
+  },
+  {
+    title: "A data science and ML engineer, too.",
+    kicker: "UMBC · M.S. Data Science",
+    align: "end",
+  },
+  {
+    title: "Models trained for real product outcomes.",
+    kicker: "Evaluation before deployment",
+    align: "start",
+  },
+  {
+    title: "Then shipped inside native mobile apps.",
+    kicker: "CoreML · SwiftUI · HealthKit",
+    align: "end",
+  },
+  {
+    title: "iOS and ML, in one practice.",
+    kicker: "From research idea to release",
+    align: "start",
+  },
+  {
+    title: "Great to have you here.",
+    kicker: "Selected work is below",
+    align: "center",
+    cta: true,
+  },
+] as const;
+
+function ChapterCtas() {
+  return (
+    <div className="hero-cta">
+      <a className="btn btn-filled" href="/#work">
+        Selected work
+      </a>
+      <a className="btn btn-outline" href="/#contact">
+        Contact
+      </a>
+    </div>
+  );
+}
 
 export default function Overlay() {
+  const reduce = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const opacity1 = useTransform(scrollYProgress, [0, 0.07, 0.13], [1, 1, 0]);
-  const y1 = useTransform(scrollYProgress, [0, 0.13], [0, -60]);
+  const ranges = [
+    [0, 0.07, 0.13],
+    [0.11, 0.19, 0.25],
+    [0.23, 0.31, 0.37],
+    [0.35, 0.43, 0.49],
+    [0.47, 0.55, 0.61],
+    [0.59, 0.69, 0.77],
+    [0.75, 0.85, 0.95],
+  ] as const;
 
-  const opacity2 = useTransform(scrollYProgress, [0.11, 0.19, 0.25], [0, 1, 0]);
-  const y2 = useTransform(scrollYProgress, [0.11, 0.25], [60, -60]);
+  const opacity1 = useTransform(scrollYProgress, [...ranges[0]], [1, 1, 0]);
+  const opacity2 = useTransform(scrollYProgress, [...ranges[1]], [0, 1, 0]);
+  const opacity3 = useTransform(scrollYProgress, [...ranges[2]], [0, 1, 0]);
+  const opacity4 = useTransform(scrollYProgress, [...ranges[3]], [0, 1, 0]);
+  const opacity5 = useTransform(scrollYProgress, [...ranges[4]], [0, 1, 0]);
+  const opacity6 = useTransform(scrollYProgress, [...ranges[5]], [0, 1, 0]);
+  const opacity7 = useTransform(scrollYProgress, [...ranges[6]], [0, 1, 1]);
+  const opacities = [opacity1, opacity2, opacity3, opacity4, opacity5, opacity6, opacity7];
 
-  const opacity3 = useTransform(scrollYProgress, [0.23, 0.31, 0.37], [0, 1, 0]);
-  const y3 = useTransform(scrollYProgress, [0.23, 0.37], [60, -60]);
-
-  const opacity4 = useTransform(scrollYProgress, [0.35, 0.43, 0.49], [0, 1, 0]);
-  const y4 = useTransform(scrollYProgress, [0.35, 0.49], [60, -60]);
-
-  const opacity5 = useTransform(scrollYProgress, [0.47, 0.55, 0.61], [0, 1, 0]);
-  const y5 = useTransform(scrollYProgress, [0.47, 0.61], [60, -60]);
-
-  const opacity6 = useTransform(scrollYProgress, [0.59, 0.69, 0.77], [0, 1, 0]);
-  const y6 = useTransform(scrollYProgress, [0.59, 0.77], [60, -60]);
-
-  const opacity7 = useTransform(scrollYProgress, [0.75, 0.85, 0.95], [0, 1, 0]);
-  const y7 = useTransform(scrollYProgress, [0.75, 0.95], [60, -60]);
+  if (reduce) {
+    return (
+      <div className="hero-chapters">
+        <p className="section-eyebrow">Index</p>
+        <ol>
+          {chapters.map((chapter, index) => (
+            <li key={chapter.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h2>{chapter.title}</h2>
+                <p>{chapter.kicker}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <ChapterCtas />
+      </div>
+    );
+  }
 
   return (
-    <div
-      ref={containerRef}
-      className="hero-overlay pointer-events-none absolute left-0 top-0 z-10 h-[500vh] w-full"
-    >
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden [height:100dvh]">
-        <motion.div
-          style={{ opacity: opacity1, y: y1 }}
-          className="hero-panel absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
-        >
-          <h1 className="hero-title mb-4 text-5xl font-semibold tracking-[-0.04em] text-white drop-shadow-[0_6px_30px_rgba(0,0,0,0.85)] md:text-7xl">
-            Hey, I&apos;m Manikanta.
-          </h1>
-          <p className="hero-kicker text-base uppercase tracking-[0.35em] text-white/80 drop-shadow-[0_6px_30px_rgba(0,0,0,0.85)] md:text-xl">
-            iOS Developer • 3+ Years of Experience
-          </p>
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: opacity2, y: y2 }}
-          className="hero-panel absolute inset-0 flex flex-col items-start justify-center p-8 md:p-24"
-        >
-          <h2 className="hero-heading max-w-3xl text-4xl font-semibold leading-[1.03] tracking-[-0.03em] text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.9)] md:text-6xl">
-            Build production-grade apps with
-            <span className="text-white/60"> on-device custom algorithms</span>
-          </h2>
-          <p className="hero-kicker mt-4 text-base uppercase tracking-[0.35em] text-white/80 drop-shadow-[0_6px_30px_rgba(0,0,0,0.85)] md:text-xl">
-            Live on the App Store
-          </p>
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: opacity3, y: y3 }}
-          className="hero-panel absolute inset-0 flex flex-col items-end justify-center p-8 text-right md:p-24"
-        >
-          <h2 className="hero-heading max-w-3xl text-4xl font-semibold leading-[1.03] tracking-[-0.03em] text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.9)] md:text-6xl">
-            I&apos;m a Data Science / ML engineer too.
-          </h2>
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: opacity4, y: y4 }}
-          className="hero-panel absolute inset-0 flex flex-col items-start justify-center p-8 md:p-24"
-        >
-          <h2 className="hero-heading max-w-3xl text-4xl font-semibold leading-[1.03] tracking-[-0.03em] text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.9)] md:text-6xl">
-            I train models for real product outcomes.
-          </h2>
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: opacity5, y: y5 }}
-          className="hero-panel absolute inset-0 flex flex-col items-end justify-center p-8 text-right md:p-24"
-        >
-          <h2 className="hero-heading max-w-3xl text-4xl font-semibold leading-[1.03] tracking-[-0.03em] text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.9)] md:text-6xl">
-            Then optimize and deploy them inside mobile apps.
-          </h2>
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: opacity6, y: y6 }}
-          className="hero-panel absolute inset-0 flex flex-col items-start justify-center p-8 md:p-24"
-        >
-          <h2 className="hero-heading max-w-3xl text-4xl font-semibold leading-[1.03] tracking-[-0.03em] text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.9)] md:text-6xl">
-            A rare hybrid combination of iOS + ML.
-          </h2>
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: opacity7, y: y7 }}
-          className="hero-panel absolute inset-0 flex flex-col items-center justify-center p-8 text-center md:p-24"
-        >
-          <p className="hero-heading text-4xl font-semibold leading-[1.1] tracking-[-0.03em] text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.9)] md:text-6xl">
-            Great to have you here.
-          </p>
-        </motion.div>
+    <div ref={containerRef} className="hero-overlay">
+      <div className="hero-sticky">
+        {chapters.map((chapter, index) => (
+          <motion.div
+            key={chapter.title}
+            style={{ opacity: opacities[index] }}
+            className={`hero-panel hero-panel-${chapter.align}`}
+          >
+            <p className="hero-kicker">
+              {String(index + 1).padStart(2, "0")} / 07 · {chapter.kicker}
+            </p>
+            {index === 0 ? (
+              <h1 className="hero-title">{chapter.title}</h1>
+            ) : (
+              <h2 className="hero-heading">{chapter.title}</h2>
+            )}
+            {"cta" in chapter && chapter.cta ? <ChapterCtas /> : null}
+          </motion.div>
+        ))}
       </div>
     </div>
   );

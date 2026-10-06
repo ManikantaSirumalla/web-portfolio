@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { ArrowRight, ArrowSquareOut } from "@phosphor-icons/react";
 
 const experiences = [
   {
@@ -124,16 +125,35 @@ const initialsFromName = (name: string) =>
     .toUpperCase();
 
 export default function PortfolioDetails() {
+  const [errors, setErrors] = useState<string[]>([]);
+  const [status, setStatus] = useState("");
+
   const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const name = (data.get("name") || "").toString().trim();
     const email = (data.get("email") || "").toString().trim();
     const message = (data.get("message") || "").toString().trim();
+    const nextErrors: string[] = [];
 
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name || "Visitor"}`);
+    if (!name) nextErrors.push("Enter your name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) nextErrors.push("Enter a valid email address.");
+    if (message.length < 8) nextErrors.push("Enter a message of at least a short sentence.");
+
+    setErrors(nextErrors);
+    if (nextErrors.length > 0) {
+      setStatus("");
+      window.requestAnimationFrame(() => {
+        document.getElementById("contact-errors")?.focus();
+      });
+      return;
+    }
+
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    setStatus("Opening your email app with this message.");
     window.location.href = `mailto:connect@sirumallamanikanta.com?subject=${subject}&body=${body}`;
   };
 
@@ -141,7 +161,7 @@ export default function PortfolioDetails() {
     <>
       <section className="section" id="about">
         <div className="section-inner">
-          <p className="section-eyebrow">About</p>
+          <p className="section-eyebrow">05 — About</p>
           <p className="about-statement">
             I build at the intersection of iOS engineering, machine learning, and product systems.
             Over the last 3+ years, I have shipped production mobile apps, built two App Store
@@ -177,17 +197,17 @@ export default function PortfolioDetails() {
         </div>
       </section>
 
-      <section className="section" id="skills" style={{ background: "var(--bg-elevated)" }}>
+      <section className="section section-muted" id="skills">
         <div className="section-inner">
-          <p className="section-eyebrow">Expertise</p>
+          <p className="section-eyebrow">06 — Practice</p>
           <h2 className="section-heading">
-            Two domains.<br />
-            <span className="section-heading-muted">One engineer.</span>
+            Two domains.
+            <span> One engineer.</span>
           </h2>
           <div className="skills-grid">
             <article className="skill-card">
               <span className="skill-icon" aria-hidden>
-                
+                iOS
               </span>
               <h3 className="skill-card-title">iOS Development</h3>
               <p className="skill-card-sub">Production native apps from idea to release</p>
@@ -255,12 +275,12 @@ export default function PortfolioDetails() {
         </div>
       </section>
 
-      <section className="section" id="experience" style={{ background: "var(--bg-elevated)" }}>
+      <section className="section" id="experience">
         <div className="section-inner">
-          <p className="section-eyebrow">Experience</p>
+          <p className="section-eyebrow">07 — Experience</p>
           <h2 className="section-heading">
-            Where I&apos;ve<br />
-            <span className="section-heading-muted">made impact.</span>
+            Where the work landed.
+            <span> School, studios, and product teams.</span>
           </h2>
           <div className="exp-list">
             {experiences.map((item) => (
@@ -286,15 +306,15 @@ export default function PortfolioDetails() {
 
       <section className="section" id="testimonials">
         <div className="section-inner">
-          <p className="section-eyebrow">Testimonials</p>
+          <p className="section-eyebrow">08 — Recommendations</p>
           <h2 className="section-heading">
-            What people say.<br />
-            <span className="section-heading-muted">About working with me.</span>
+            Notes from people I&apos;ve worked with.
+            <span> Leads, faculty, and collaborators.</span>
           </h2>
           <div className="testimonials-grid">
             <article className="testimonial-featured">
               <div>
-                <div className="testimonial-featured-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <p className="testimonial-kicker">Recommendation</p>
                 <p className="testimonial-featured-quote">&quot;{testimonials[0].quote}&quot;</p>
               </div>
               <div className="testimonial-featured-meta">
@@ -308,7 +328,7 @@ export default function PortfolioDetails() {
 
             {testimonials.slice(1).map((item, index) => (
               <article key={item.author} className="testimonial-card">
-                <div className="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <p className="testimonial-kicker">Recommendation</p>
                 <p className="testimonial-quote">{item.quote}</p>
                 <div className="testimonial-author">
                   <div className={`testimonial-avatar ta-${index + 1}`}>{initialsFromName(item.author)}</div>
@@ -323,10 +343,13 @@ export default function PortfolioDetails() {
         </div>
       </section>
 
-      <section className="section" id="writing" style={{ background: "var(--bg-elevated)" }}>
+      <section className="section section-muted" id="writing">
         <div className="section-inner">
-          <p className="section-eyebrow">Publications</p>
-          <h2 className="section-heading">Writing on Medium.</h2>
+          <p className="section-eyebrow">09 — Writing</p>
+          <h2 className="section-heading">
+            Notes on Medium.
+            <span> iOS engineering, written down.</span>
+          </h2>
           <div className="blog-list">
             {publications.map((post) => (
               <a
@@ -342,7 +365,7 @@ export default function PortfolioDetails() {
                   <h3 className="blog-title">{post.title}</h3>
                   <p className="blog-excerpt">{post.excerpt}</p>
                 </div>
-                <span className="blog-arrow" aria-hidden>→</span>
+                <ArrowSquareOut className="blog-arrow" size={18} aria-hidden />
               </a>
             ))}
           </div>
@@ -351,9 +374,9 @@ export default function PortfolioDetails() {
 
       <section className="contact-section" id="contact">
         <div className="section-inner">
-          <p className="section-eyebrow">Contact</p>
+          <p className="section-eyebrow">10 — Contact</p>
           <h2 className="contact-heading">
-            Let&apos;s build<br />something <span className="text-gradient">great</span>.
+            Let&apos;s build something precise.
           </h2>
           <p className="contact-sub">
             Looking for an iOS developer with a data science edge? I&apos;m in Baltimore, MD and
@@ -368,41 +391,60 @@ export default function PortfolioDetails() {
             </a>
           </div>
           <form onSubmit={handleContactSubmit} className="contact-form" noValidate>
+            {errors.length > 0 ? (
+              <div id="contact-errors" className="form-alert" role="alert" tabIndex={-1}>
+                <p>The message was not sent. Fix these fields:</p>
+                <ul>
+                  {errors.map((error) => (
+                    <li key={error}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
             <div className="contact-form-grid">
-              <label className="sr-only" htmlFor="contact-name">Your name</label>
-              <input
-                id="contact-name"
-                type="text"
-                name="name"
-                autoComplete="name"
+              <div className="field">
+                <label htmlFor="contact-name">Name</label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  required
+                  aria-invalid={errors.some((error) => error.includes("name"))}
+                  className="contact-input"
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="contact-email">Email</label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  inputMode="email"
+                  required
+                  aria-invalid={errors.some((error) => error.includes("email"))}
+                  className="contact-input"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label htmlFor="contact-message">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
                 required
-                placeholder="Your name"
-                className="contact-input"
-              />
-              <label className="sr-only" htmlFor="contact-email">Your email</label>
-              <input
-                id="contact-email"
-                type="email"
-                name="email"
-                autoComplete="email"
-                inputMode="email"
-                required
-                placeholder="Your email"
-                className="contact-input"
+                aria-invalid={errors.some((error) => error.includes("message"))}
+                className="contact-textarea"
               />
             </div>
-            <label className="sr-only" htmlFor="contact-message">Message</label>
-            <textarea
-              id="contact-message"
-              name="message"
-              required
-              placeholder="Tell me about your project or role..."
-              className="contact-textarea"
-            />
             <button type="submit" className="btn btn-filled contact-submit">
               Send message
+              <ArrowRight size={16} aria-hidden />
             </button>
-            <p className="contact-form-note">This opens your mail app with the message pre-filled.</p>
+            <p className="contact-form-note" role="status">
+              {status || "This opens your mail app with the message filled in. Nothing is stored on this site."}
+            </p>
           </form>
 
           <div className="contact-links">
@@ -421,7 +463,7 @@ export default function PortfolioDetails() {
 
       <footer className="footer">
         <div className="footer-inner">
-          <span>© 2025 Manikanta Sirumalla</span>
+          <span>© 2026 Manikanta Sirumalla</span>
           <span>Built with passion in Baltimore, MD.</span>
         </div>
       </footer>

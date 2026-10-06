@@ -4,29 +4,28 @@ const resumes = [
     audience: "Swift, SwiftUI, app architecture, App Store products, and mobile engineering roles.",
     href: "/resumes/Manikanta_iOS_Resume.pdf",
     downloadName: "Manikanta_iOS_Resume.pdf",
-    meta: "Mobile Engineering",
+    meta: "Mobile engineering",
   },
   {
     title: "ML / Data Science Resume",
     audience: "Applied machine learning, data science, analytics, modeling, and AI product roles.",
     href: "/resumes/Manikanta_ML_Resume.pdf",
     downloadName: "Manikanta_ML_Resume.pdf",
-    meta: "Machine Learning",
+    meta: "Machine learning",
   },
 ];
 
 export default function ResumeHub() {
   return (
-    <section className="section resume-section" id="resume">
+    <section className="section section-muted" id="resume">
       <div className="section-inner">
-        <p className="section-eyebrow">Resume</p>
+        <p className="section-eyebrow">02 — Resume</p>
         <h2 className="section-heading">
-          Choose the version that fits the role.
-          <br />
-          <span className="section-heading-muted">iOS engineering or ML and data science.</span>
+          Two versions.
+          <span> Pick the one that matches the role.</span>
         </h2>
         <p className="section-desc">
-          Two focused resumes for recruiters and hiring teams, matched to the work shown across this portfolio.
+          Focused resumes for recruiters and hiring teams, matched to the work on this site.
         </p>
 
         <div className="resume-grid">

@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { ArrowLeft } from "@phosphor-icons/react/ssr";
 import { projects, projectBySlug, appStoreUrlForProject } from "@/data/projects";
 
 type Params = { slug: string };
@@ -26,10 +28,10 @@ export default function ProjectDetailPage({ params }: { params: Params }) {
   const otherLinks = (project.links ?? []).filter((link) => link.label !== "App Store");
 
   return (
-    <main className="project-detail-page">
+    <main id="content" className="project-detail-page">
       <div className="project-detail-container">
         <Link href="/#work" className="detail-back">
-          <span aria-hidden>←</span> Back to projects
+          <ArrowLeft size={16} aria-hidden /> Back to projects
         </Link>
 
         <div className="detail-header">
@@ -45,9 +47,11 @@ export default function ProjectDetailPage({ params }: { params: Params }) {
               className="app-store-badge-detail"
               aria-label="Download on the App Store"
             >
-              <img
+              <Image
                 src="/assets/badges/app-store.svg"
                 alt="Download on the App Store"
+                width={120}
+                height={40}
               />
             </a>
           )}
@@ -77,11 +81,11 @@ export default function ProjectDetailPage({ params }: { params: Params }) {
             <div className="detail-screenshot-grid">
               {project.screenshots.map((src, index) => (
                 <div key={src} className="detail-shot">
-                  <img
+                  <Image
                     src={src}
                     alt={`${project.title} screenshot ${index + 1}`}
-                    loading="lazy"
-                    decoding="async"
+                    width={400}
+                    height={800}
                   />
                 </div>
               ))}

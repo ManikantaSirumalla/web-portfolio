@@ -1,40 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
+import { List, X } from "@phosphor-icons/react";
 
 const links = [
-  { href: "#resume", label: "Resume" },
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#media", label: "Media" },
-  { href: "#work", label: "Work" },
-  { href: "#experience", label: "Experience" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#writing", label: "Publications" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#work", label: "Work" },
+  { href: "/#resume", label: "Resume" },
+  { href: "/#highlights", label: "Highlights" },
+  { href: "/#media", label: "Media" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#writing", label: "Writing" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
+  const menuId = useId();
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
     };
     document.addEventListener("keydown", onKey);
+    const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
+      document.body.style.overflow = previous;
     };
   }, [open]);
 
   return (
     <header className="site-nav-wrap">
       <nav className="site-nav" aria-label="Primary">
-        <a href="#" className="site-nav-logo">
-          Manikanta Sirumalla.
+        <a href="/" className="site-nav-logo">
+          Manikanta Sirumalla
         </a>
         <div className="site-nav-links">
           {links.map((link) => (
@@ -43,38 +45,32 @@ export default function SiteNav() {
             </a>
           ))}
         </div>
+        <a className="site-nav-cta" href="/#contact">
+          Hire
+        </a>
         <button
           type="button"
           className="site-nav-toggle"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
+          aria-controls={menuId}
+          onClick={() => setOpen((value) => !value)}
         >
-          <span className={`site-nav-toggle-bar ${open ? "is-open-1" : ""}`} />
-          <span className={`site-nav-toggle-bar ${open ? "is-open-2" : ""}`} />
-          <span className={`site-nav-toggle-bar ${open ? "is-open-3" : ""}`} />
+          {open ? <X size={18} aria-hidden /> : <List size={18} aria-hidden />}
         </button>
       </nav>
 
-      <div
-        id="mobile-menu"
-        className={`mobile-menu ${open ? "is-open" : ""}`}
-        aria-hidden={!open}
-      >
-        <div className="mobile-menu-inner">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="mobile-menu-link"
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
+      {open ? (
+        <div id={menuId} className="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu">
+          <div className="mobile-menu-inner">
+            {links.map((link) => (
+              <a key={link.href} href={link.href} className="mobile-menu-link" onClick={() => setOpen(false)}>
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : null}
     </header>
   );
 }
