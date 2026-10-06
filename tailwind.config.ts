@@ -9,27 +9,41 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: {
-          DEFAULT: "#0A0C10",
-          raised: "#10141A",
-          line: "#1E252E",
-        },
-        fg: {
-          DEFAULT: "#E7EBF0",
-          muted: "#9AA4B2",
-          faint: "#7C8796",
-        },
-        accent: {
-          DEFAULT: "#6EE7B7",
-          soft: "rgba(110, 231, 183, 0.1)",
-        },
+        ink: "#1d1d1f",
+        graphite: "#6e6e73",
+        mist: "#f5f5f7",
+        hairline: "#d2d2d7",
+        night: "#000000",
+        dusk: "#161617",
+        cloud: "#a1a1a6",
+        link: "#0066cc",
+        "link-dark": "#2997ff",
+        action: "#0071e3",
+        "action-hover": "#0077ed",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
+        sans: [
+          "var(--font-inter)",
+          '"Helvetica Neue"',
+          "Helvetica",
+          "Arial",
+          "sans-serif",
+        ],
+      },
+      letterSpacing: {
+        display: "-0.015em",
+        headline: "-0.009em",
+        body: "-0.022em",
       },
       maxWidth: {
-        shell: "1240px",
+        page: "1068px",
+        wide: "1260px",
+      },
+      borderRadius: {
+        tile: "28px",
+      },
+      transitionTimingFunction: {
+        apple: "cubic-bezier(0.25, 0.1, 0.25, 1)",
       },
     },
   },

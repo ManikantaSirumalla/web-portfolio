@@ -1,17 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import Spotlight from "@/components/portfolio/Spotlight";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
   display: "swap",
 });
 
@@ -43,16 +36,18 @@ export const metadata: Metadata = {
     title: "Manikanta Sirumalla · iOS Engineer",
     description,
     siteName: "Manikanta Sirumalla",
+    images: ["/media/hero-poster.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Manikanta Sirumalla · iOS Engineer",
     description,
+    images: ["/media/hero-poster.jpg"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0C10",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -64,15 +59,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body>
         <a
           href="#content"
-          className="fixed left-4 top-4 z-50 -translate-y-24 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-ink focus:translate-y-0"
+          className="fixed left-4 top-2 z-50 -translate-y-24 rounded-full bg-action px-4 py-2 text-[14px] text-white focus:translate-y-0"
         >
           Skip to content
         </a>
-        <Spotlight />
         {children}
       </body>
     </html>
